@@ -1,29 +1,37 @@
 using System;
+using Helpers;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    private Gun _gun;
+    private BulletEmitter[] _guns;
     private Transform _transform;
+    private Vector3 _defaultOrientation = Vector2.up;
     
     // Start is called before the first frame update
     void Start()
     {
         _transform = transform;
-        _gun = GetComponent<Gun>();
+        _guns = GetComponentsInChildren<BulletEmitter>();
         var bulletPrefab = Resources.Load<GameObject>("PhysicalBullet") ?? throw new Exception("Couldn't find prefab");
 
-        _gun.bulletPrefab = bulletPrefab;
+        foreach (var gun in _guns)
+            gun.bulletPrefab = bulletPrefab;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        var target = Game.ControlManager.MouseWorldPosition;
+        _transform.LookAt2d(target);
+
+        var bulletDirection = target - _transform.position;
+        
         if (!Game.ControlManager.Shoot) 
             return;
-        
-        var aimedAtDirection = Game.ControlManager.MouseWorldPosition;
-        _gun.Shoot(aimedAtDirection);
+
+        foreach (var gun in _guns)
+            gun.Shoot();
     }
 }

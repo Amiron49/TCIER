@@ -10,5 +10,15 @@ namespace Helpers
 		{
 			return new Vector3(input.x, input.y, z);
 		}
+		
+	
+	}
+
+	public static class TransformExtensions
+	{
+		public static void LookAt2d(this Transform input, Vector3 target)
+		{
+			input.up = target - input.position;
+		}
 	}
 }

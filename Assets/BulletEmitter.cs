@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class BulletEmitter : MonoBehaviour
 {
 	public float fireRate = 2f;
 	private float _cooldown;
@@ -26,20 +25,32 @@ public class Gun : MonoBehaviour
 			_cooldown -= Time.deltaTime;
 	}
 
-	public void Shoot(Vector3 target)
+	public void Shoot(Vector3 direction)
 	{
 		if (_cooldown > 0)
 			return;
         
+		EmitBullet(direction);
+	}
+	
+	public void Shoot()
+	{
+		if (_cooldown > 0)
+			return;
+
+		EmitBullet(_transform.up);
+	}
+	
+	public void EmitBullet(Vector3 direction)
+	{
 		_cooldown = CalculateCooldown();
 
 		var ownPosition = _transform.position;
-		var bulletTravelDirection = (target - ownPosition).normalized;
+		var bulletTravelDirection = direction.normalized;
             
-		var bulletInstance = Instantiate(bulletPrefab, ownPosition, _transform.localRotation);
+		var bulletInstance = Instantiate(bulletPrefab, ownPosition, _transform.rotation);
 		var bullet = bulletInstance.GetComponent<IBullet>();
 
 		bullet.Direction = bulletTravelDirection;
-		Debug.Log(bulletTravelDirection);
 	}
 }
