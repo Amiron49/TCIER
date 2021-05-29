@@ -1,11 +1,12 @@
 #nullable enable
+using System;
+using Helpers;
 using StateMachine;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-	private ControlManager _controlManager = null!;
 	private IStateMachine _movementStateMachine = null!;
 	public float speed = 4;
 	public float dodgeSpeed = 30;
@@ -14,16 +15,14 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		_controlManager = new ControlManager();
-
 		var movementStateMachineBuilder = new StateMachineBuilder();
-		var normalMovementState = new NormalMovementState("Normal", this, _controlManager);
-		var rollingDodge = new RollingDodgeState("RollingDodge", this, _controlManager);
+		var normalMovementState = new NormalMovementState("Normal", this, Game.ControlManager);
+		var rollingDodge = new RollingDodgeState("RollingDodge", this, Game.ControlManager);
 		
 		movementStateMachineBuilder.AddState(normalMovementState);
 		movementStateMachineBuilder.AddState(rollingDodge);
 		
-		movementStateMachineBuilder.AddTriggerTransition("Press Dodge", normalMovementState.Key, rollingDodge.Key, () => _controlManager.Dodge);
+		movementStateMachineBuilder.AddTriggerTransition("Press Dodge", normalMovementState.Key, rollingDodge.Key, () => Game.ControlManager.Dodge);
 		movementStateMachineBuilder.AddEventTransition("", rollingDodge.Key, normalMovementState.Key);
 
 		_movementStateMachine = movementStateMachineBuilder.Build("Movement");
@@ -33,7 +32,6 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		_controlManager.Update();
 		_movementStateMachine.Update();
 	}
 
@@ -99,10 +97,19 @@ public class Player : MonoBehaviour
 
 
 
+public static class Game
+{
+	public static readonly ControlManager ControlManager = new ControlManager();
+}
+
+
 public class ControlManager
 {
 	public Vector3 MoveDirection { get; private set; }
+	public Vector3 MousePosition { get; private set; }
+	public Vector3 MouseWorldPosition { get; private set; }
 	public bool Dodge { get; private set; }
+	public bool Shoot { get; private set; }
 
 	public void Update()
 	{
@@ -111,6 +118,9 @@ public class ControlManager
 
 		MoveDirection = Vector2.ClampMagnitude(new Vector2(horizontal, vertical), 1);
 		MoveDirection.Normalize();
-		Dodge = Input.GetKeyDown(KeyCode.Space);
+		Dodge = Input.GetButtonDown("Jump");
+		Shoot = Input.GetButton("Fire1");
+		MousePosition = Input.mousePosition;
+		MouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePosition).NoZ(Vector3Extensions.StandardZ);
 	}
 }
