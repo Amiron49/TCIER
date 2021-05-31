@@ -3,6 +3,7 @@
 public class BulletEmitter : MonoBehaviour
 {
 	public float fireRate = 2f;
+	public Team damages;
 	private float _cooldown;
 	public GameObject bulletPrefab;
 	private Transform _transform;
@@ -50,7 +51,9 @@ public class BulletEmitter : MonoBehaviour
             
 		var bulletInstance = Instantiate(bulletPrefab, ownPosition, _transform.rotation);
 		var bullet = bulletInstance.GetComponent<IBullet>();
+		var damageConfig = bulletInstance.GetComponent<IDamageSource>();
 
+		damageConfig.For = damages;		
 		bullet.Direction = bulletTravelDirection;
 	}
 }

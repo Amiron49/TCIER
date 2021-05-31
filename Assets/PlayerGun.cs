@@ -26,8 +26,6 @@ public class PlayerGun : MonoBehaviour
         var target = Game.ControlManager.MouseWorldPosition;
         _transform.LookAt2d(target);
 
-        var bulletDirection = target - _transform.position;
-        
         if (!Game.ControlManager.Shoot) 
             return;
 
