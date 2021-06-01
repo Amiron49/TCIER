@@ -8,11 +8,13 @@ public class SeekPlayer : MonoBehaviour
     
     private Transform _playerTransform;
     private Transform _transform;
+    private Rigidbody2D _rigidbody;
     
     // Start is called before the first frame update
     void Start()
     {
         _transform = transform;
+        _rigidbody = GetComponent<Rigidbody2D>();
         var player = gameObject.scene.GetRootGameObjects().Single(x => x.CompareTag("Player"));
         _playerTransform = player.transform;
     }
@@ -20,16 +22,21 @@ public class SeekPlayer : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        
+		
+    }
+
+    private void FixedUpdate()
+    {
         var currentPosition = _transform.position;
         var targetPosition = CalculateNextPosition(currentPosition, _playerTransform.position);
-		
-        _transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);
+        _rigidbody.MovePosition(targetPosition);
     }
-		
+
     private Vector3 CalculateNextPosition(Vector3 currentPosition, Vector3 playerPosition)
     {
         var direction = (playerPosition - currentPosition).normalized;
-        return currentPosition + direction * speed;
+        return currentPosition + direction * (speed * Time.fixedDeltaTime);
     }
 
     private void OnDestroy()

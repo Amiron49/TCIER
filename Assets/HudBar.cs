@@ -6,7 +6,7 @@ public class HudBar : MonoBehaviour
 {
     public float targetFill = 100;
     public float fillVelocity = 5;
-    public float minFillVelocity = 5;
+    public float minFillVelocity = 10;
     public Image filling;
     
     // Start is called before the first frame update
@@ -17,10 +17,10 @@ public class HudBar : MonoBehaviour
     public void GradualChangeFill(float target)
     {
         var difference = CurrentFill() - target;
-        var velocity = Mathf.Abs(difference * 0.5f);
+        fillVelocity = Mathf.Abs(difference * 0.5f);
 
-        if (velocity > minFillVelocity)
-            fillVelocity = velocity;
+        if (fillVelocity < minFillVelocity)
+            fillVelocity = minFillVelocity;
         
         targetFill = target;
     }
@@ -35,17 +35,18 @@ public class HudBar : MonoBehaviour
         if (!(Mathf.Abs(delta) > 0.1)) 
             return;
         
-        var nextTargetFill = currentFill - Mathf.Sign(delta) * fillVelocity;
+        var nextTargetFill = currentFill - Mathf.Sign(delta) * fillVelocity * Time.deltaTime;
 
-        if (delta < minFillVelocity)
-        {
-            SetUiFill(targetFill);
-            return;
-        }
-
-        var nextFill = Mathf.Lerp(currentFill, nextTargetFill, Time.deltaTime);
-
-        SetUiFill(nextFill);
+        // if (delta < minFillVelocity)
+        // {
+        //     SetUiFill(targetFill);
+        //     return;
+        // }
+        //
+        // var nextFill = Mathf.Lerp(currentFill, nextTargetFill, Time.deltaTime);
+        //
+        // SetUiFill(nextFill);
+        SetUiFill(nextTargetFill);
     }
 
     private void SetUiFill(float target)

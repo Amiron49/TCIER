@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 178377613331147149}
   - component: {fileID: 5471531537448563213}
   - component: {fileID: 1295614277051378657}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PhysicalBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,3 +129,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  for: 0

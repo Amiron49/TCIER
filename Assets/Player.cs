@@ -34,30 +34,35 @@ public class Player : MonoBehaviour
 		_movementStateMachine.Update();
 	}
 
+	private void FixedUpdate()
+	{
+		_movementStateMachine.FixedUpdate();
+	}
+
 	private class NormalMovementState : StateBase
 	{
 		private readonly Player _player;
 		private readonly ControlManager _controlManager;
-		private readonly Transform _transform; 
+		private readonly Rigidbody2D _rigidbody; 
 		
 		public NormalMovementState(string key, Player player, ControlManager controlManager) : base(key)
 		{
 			_player = player;
 			_controlManager = controlManager;
-			_transform = player.GetComponent<Transform>();
+			_rigidbody = player.GetComponentInChildrenStrict<Rigidbody2D>();
+		}	
+
+		public override void FixedUpdate()
+		{
+			var currentPosition = _rigidbody.position;
+			var targetPosition = CalculateNextPosition(currentPosition);
+
+			_rigidbody.MovePosition(targetPosition);
 		}
 
-		public override void Update()
-		{
-			var currentPosition = _transform.position;
-			var targetPosition = CalculateNextPosition(currentPosition);
-		
-			_transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);
-		}
-		
 		private Vector3 CalculateNextPosition(Vector3 currentPosition)
 		{
-			return currentPosition + _controlManager.MoveDirection * _player.speed;
+			return currentPosition + _controlManager.MoveDirection * (_player.speed * Time.fixedDeltaTime);
 		}
 	}
 	
@@ -72,12 +77,13 @@ public class Player : MonoBehaviour
 		{
 			_player = player;
 			_controlManager = controlManager;
-			_transform = player.GetComponent<Transform>();
+			_transform = player.GetComponentStrict<Transform>();
 		}
 
 		protected override void OnEnterInternal(object? @event)
 		{
 			_dodgeDirection = _controlManager.MoveDirection.normalized;
+			_player.gameObject.layer = LayerMask.NameToLayer("Dodge");
 		}
 
 		protected override void UpdateInternal()
@@ -86,7 +92,13 @@ public class Player : MonoBehaviour
 			var targetPosition = CalculateNextPosition(currentPosition);
 			_transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);
 		}
-		
+
+		public override void OnLeave()
+		{
+			_player.gameObject.layer = LayerMask.NameToLayer("Player");
+			base.OnLeave();
+		}
+
 		private Vector3 CalculateNextPosition(Vector3 start)
 		{
 			return start + _dodgeDirection * _player.dodgeSpeed;

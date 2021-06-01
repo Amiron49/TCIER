@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿using System;
+using UnityEngine;
+#nullable enable
 namespace Helpers
 {
 	public static class Vector3Extensions
@@ -19,6 +20,19 @@ namespace Helpers
 		public static void LookAt2d(this Transform input, Vector3 target)
 		{
 			input.up = target - input.position;
+		}
+	}
+	
+	public static class GameObjectExtensions
+	{
+		public static T GetComponentInChildrenStrict<T>(this Component thing)
+		{
+			return thing.GetComponentInChildren<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}");
+		}
+		
+		public static T GetComponentStrict<T>(this Component thing)
+		{
+			return thing.GetComponent<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}");
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace StateMachine
 		public string Key { get; }
 		public void OnEnter(object? @event = null);
 		public void Update();
+		public void FixedUpdate();
 		public void OnLeave();
 
 		public bool HandleEvent(string eventKey, object? eventData = null);
@@ -33,7 +34,13 @@ namespace StateMachine
 		{
 		}
 
-		public abstract void Update();
+		public virtual void Update()
+		{
+		}
+
+		public virtual void FixedUpdate()
+		{
+		}
 
 		public virtual void OnLeave()
 		{
@@ -79,6 +86,11 @@ namespace StateMachine
 				SetStateInternal(matchingTrigger.To);
 
 			CurrentState.Update();
+		}
+
+		public override void FixedUpdate()
+		{
+			CurrentState?.FixedUpdate();
 		}
 
 		public void SetState(string key)

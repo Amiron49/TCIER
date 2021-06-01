@@ -53,6 +53,7 @@ public class BulletEmitter : MonoBehaviour
 		var bullet = bulletInstance.GetComponent<IBullet>();
 		var damageConfig = bulletInstance.GetComponent<IDamageSource>();
 
+		gameObject.layer = damages.DamageToLayer();
 		damageConfig.For = damages;		
 		bullet.Direction = bulletTravelDirection;
 	}

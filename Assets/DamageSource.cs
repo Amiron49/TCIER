@@ -49,3 +49,17 @@ public enum Team
     Player = 1 << 0,
     Enemy = 1 << 1
 }
+
+public static class TeamHelper {
+    public static int DamageToLayer(this Team team)
+    {
+        return team switch
+        {
+            Team.Enemy => LayerMask.NameToLayer("Player Bullets"),
+            Team.Player => LayerMask.NameToLayer("Enemy Bullets"),
+            Team.Player | Team.Enemy => throw new NotImplementedException("Didn't make a combination layer yet for that."),
+            Team.None => throw new InvalidOperationException("None case has no layer yet"),
+            _ => throw new ArgumentOutOfRangeException(nameof(team), team, null)
+        };
+    }
+}
