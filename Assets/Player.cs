@@ -1,5 +1,4 @@
 #nullable enable
-using System;
 using Helpers;
 using StateMachine;
 using UnityEngine;
@@ -14,6 +13,7 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		Game.State.Player = this;
 		var movementStateMachineBuilder = new StateMachineBuilder();
 		var normalMovementState = new NormalMovementState("Normal", this, Game.ControlManager);
 		var rollingDodge = new RollingDodgeState("RollingDodge", this, Game.ControlManager);
@@ -111,6 +111,7 @@ public class Player : MonoBehaviour
 public static class Game
 {
 	public static readonly ControlManager ControlManager = new ControlManager();
+	public static readonly State State = new State();
 }
 
 
@@ -132,6 +133,27 @@ public class ControlManager
 		Dodge = Input.GetButtonDown("Jump");
 		Shoot = Input.GetButton("Fire1");
 		MousePosition = Input.mousePosition;
-		MouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePosition).NoZ(Vector3Extensions.StandardZ);
+		MouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePosition).NoZ();
 	}
 }
+
+public class State
+{
+	public Player Player { get; set; }
+	public int Money { get; private set; } = 0;
+	public void AddMoney(int amount)
+	{
+		Money += amount;
+	}
+	
+	public void RemoveMoney(int amount)
+	{
+		Money -= amount;
+	}
+
+	public event MoneyChange OnMoneyChange;
+	
+	public int SwarmerKillCount { get; set; } = 0;
+}
+
+public delegate void MoneyChange(object sender, int amount);

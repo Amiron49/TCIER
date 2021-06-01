@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8392347194331006372}
   - component: {fileID: 4454280838097195245}
   - component: {fileID: 493828320459713390}
+  - component: {fileID: 4194997724621832897}
   m_Layer: 13
   m_Name: EnemySeeker
   m_TagString: Untagged
@@ -116,6 +117,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4194997724621832897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070006150321824708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e0aa5d71a96124fb6a6ab982b51001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 1
+  worth: 1
+  moneyPrefab: {fileID: 5993255303886767693, guid: 4e69989f8141deb468bd1d37ceaf5367, type: 3}
 --- !u!1 &1070006150947608566
 GameObject:
   m_ObjectHideFlags: 0
