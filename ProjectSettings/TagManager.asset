@@ -12,6 +12,14 @@ TagManager:
   - 
   - Water
   - UI
+  - Dodge
+  - Bounds
+  - Player
+  - Enemy Bullets
+  - Player Bullets
+  - 
+  - 
+  - Enemy Swarmers
   - 
   - 
   - 
@@ -29,16 +37,23 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy Others
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground Effects
+    uniqueID: 1903538567
+    locked: 0
+  - name: Player Bullets
+    uniqueID: 2258194021
+    locked: 0
+  - name: Characters
+    uniqueID: 742108541
+    locked: 0
+  - name: Enemy Bullets
+    uniqueID: 1572240047
+    locked: 0
+  - name: Bullet Emitters
+    uniqueID: 1285925733
     locked: 0
