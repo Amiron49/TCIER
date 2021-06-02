@@ -144,14 +144,16 @@ public class State
 	public void AddMoney(int amount)
 	{
 		Money += amount;
+		OnMoneyChange?.Invoke(this, amount);
 	}
 	
 	public void RemoveMoney(int amount)
 	{
 		Money -= amount;
+		OnMoneyChange?.Invoke(this, -amount);
 	}
-
-	public event MoneyChange OnMoneyChange;
+	
+	public event MoneyChange? OnMoneyChange;
 	
 	public int SwarmerKillCount { get; set; } = 0;
 }
