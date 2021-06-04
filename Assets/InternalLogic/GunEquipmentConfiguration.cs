@@ -4,7 +4,7 @@ using UnityEngine;
 namespace InternalLogic
 {
 	[CreateAssetMenu]
-	public class GunEquipConfiguration : ScriptableObject, IGunEquipConfiguration
+	public class GunEquipmentConfiguration : ScriptableObject, IGunEquipConfiguration
 	{
 		public string description;
 		public List<GunModifier> modifiers;

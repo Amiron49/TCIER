@@ -4,10 +4,10 @@ using UnityEngine;
 namespace InternalLogic
 {
 	[CreateAssetMenu]
-	public class BodyEquipConfig : ScriptableObject, IBodyEquipConfig
+	public class BodyEquipmentConfiguration : ScriptableObject, IBodyEquipConfig
 	{
 		public string description;
-		public IEnumerable<IBodyModifier> modifiers;
+		public List<BodyModifier> modifiers;
 
 		public string Description => description;
 		public IEnumerable<IBodyModifier> Modifiers => modifiers;

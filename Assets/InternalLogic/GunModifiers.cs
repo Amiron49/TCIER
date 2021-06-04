@@ -12,6 +12,7 @@
 		Damage,
 		AddPierce,
 		ChargeShot,
-		Accuracy
+		Accuracy,
+		Slots
 	}
 }

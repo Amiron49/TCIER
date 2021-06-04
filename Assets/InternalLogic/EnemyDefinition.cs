@@ -12,8 +12,8 @@ public class EnemyDefinition : ScriptableObject, IEnemyConfig
 	public GameObject menuHuskPrefab;
 	public GameObject enemyPrefab;
 	public BulletDefinition? asBulletEquipment;
-	public GunEquipConfiguration? asGunEquipment;
-	public IBodyEquipConfig? asBodyEquipment;
+	public GunEquipmentConfiguration? asGunEquipment;
+	public BodyEquipmentConfiguration? asBodyEquipment;
 	public int basePrice;
 
 	public string Name => enemyName;
