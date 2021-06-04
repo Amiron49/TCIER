@@ -1,0 +1,1 @@
+﻿public delegate void MoneyChange(object sender, int amount);
