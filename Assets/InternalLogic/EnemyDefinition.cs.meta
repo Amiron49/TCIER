@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9a751ba28d9bca04caab57f6d0ad16a2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - menuHuskPrefab: {instanceID: 0}
+  - enemyPrefab: {instanceID: 0}
+  - asBulletEquipment: {instanceID: 0}
+  - asGunEquipment: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

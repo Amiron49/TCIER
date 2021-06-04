@@ -8,7 +8,6 @@
 		Homing,
 		Velocity,
 		Arcs,
-		Shotguns,
 		MoreProjectile,
 		Damage,
 		AddPierce,

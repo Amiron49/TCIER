@@ -12,7 +12,7 @@ namespace InternalLogic
 		GameObject MenuHuskPrefab { get; }
 		GameObject EnemyPrefab { get; }
 		IBulletEquipConfig? AsBulletEquipment { get; }
-		IGunEquipConfig? AsGunEquipment { get; }
+		IGunEquipConfiguration? AsGunEquipment { get; }
 		IBodyEquipConfig? AsBodyEquipment { get; }
 		int BasePrice { get; }
 	}
