@@ -10,9 +10,9 @@ public class UpdateCounter : MonoBehaviour
     void Start()
     {
         _text = this.GetComponentInChildrenStrict<TMP_Text>();
-        Game.State.OnMoneyChange += (sender, amount) =>
+        Game.Instance.State.OnMoneyChange += (sender, amount) =>
         {
-            _text.text = Game.State.Money.ToString();
+            _text.text = Game.Instance.State.Money.ToString();
         };
     }
 }

@@ -23,10 +23,10 @@ public class PlayerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var target = Game.ControlManager.MouseWorldPosition;
+        var target = Game.Instance.ControlManager.MouseWorldPosition;
         _transform.LookAt2d(target);
 
-        if (!Game.ControlManager.Shoot) 
+        if (!Game.Instance.ControlManager.Shoot) 
             return;
 
         foreach (var gun in _guns)

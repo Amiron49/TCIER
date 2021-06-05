@@ -21,6 +21,6 @@ public class SpawnMoneyOnDeath : MonoBehaviour
         var asMoney = instance.GetComponent<MoneyPickup>();
         asMoney.amount = worth;
         var wackyHoming = instance.GetComponent<WackyHoming>();
-        wackyHoming.to = Game.State.Player.gameObject;
+        wackyHoming.to = Game.Instance.State.Player.gameObject;
     }
 }

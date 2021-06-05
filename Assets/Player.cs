@@ -13,15 +13,15 @@ public class Player : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		Game.State.Player = this;
+		Game.Instance.State.Player = this;
 		var movementStateMachineBuilder = new StateMachineBuilder();
-		var normalMovementState = new NormalMovementState("Normal", this, Game.ControlManager);
-		var rollingDodge = new RollingDodgeState("RollingDodge", this, Game.ControlManager);
+		var normalMovementState = new NormalMovementState("Normal", this, Game.Instance.ControlManager);
+		var rollingDodge = new RollingDodgeState("RollingDodge", this, Game.Instance.ControlManager);
 		
 		movementStateMachineBuilder.AddState(normalMovementState);
 		movementStateMachineBuilder.AddState(rollingDodge);
 		
-		movementStateMachineBuilder.AddTriggerTransition("Press Dodge", normalMovementState.Key, rollingDodge.Key, () => Game.ControlManager.Dodge);
+		movementStateMachineBuilder.AddTriggerTransition("Press Dodge", normalMovementState.Key, rollingDodge.Key, () => Game.Instance.ControlManager.Dodge);
 		movementStateMachineBuilder.AddEventTransition("", rollingDodge.Key, normalMovementState.Key);
 
 		_movementStateMachine = movementStateMachineBuilder.Build("Movement");

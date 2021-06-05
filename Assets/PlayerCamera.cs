@@ -11,6 +11,6 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Game.ControlManager.Update();
+        Game.Instance.ControlManager.Update();
     }
 }

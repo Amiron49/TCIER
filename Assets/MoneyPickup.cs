@@ -12,13 +12,13 @@ public class MoneyPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Game.State.AddMoney(amount);
+        Game.Instance.State.AddMoney(amount);
         Destroy(gameObject);
     }
     
     private void OnTriggerStay2D(Collider2D other)
     {
-        Game.State.AddMoney(amount);
+        Game.Instance.State.AddMoney(amount);
         Destroy(gameObject);
     }
 
