@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace InternalLogic
 {
@@ -7,9 +10,8 @@ namespace InternalLogic
 		public string Name { get; }
 		public string Description { get; }
 		public GameObject BulletPrefab { get; }
-		public float Cooldown { get; }
-		public bool Channeled { get; }
-		public float WindUp { get; }
-		public float WindDown { get; }
+		public Dictionary<GunProperties, float> BaseStats { get; }
 	}
+
+	
 }

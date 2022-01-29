@@ -5,11 +5,11 @@ namespace InternalLogic
 	[Serializable]
 	public class BodyModifier : IBodyModifier
 	{
-		public BodyModifiers modifies;
+		public BodyProperties modifies;
 		public ModifierType how;
 		public float value;
 
-		public BodyModifiers Modifies => modifies;
+		public BodyProperties Modifies => modifies;
 		public ModifierType How => how;
 		public float Value => value;
 	}

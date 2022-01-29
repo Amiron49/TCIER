@@ -21,7 +21,10 @@ public class BulletEmitter : MonoBehaviour
 
 	// Update is called once per frame
 	void Update()
-	{   
+	{
+		if (Game.Instance.State.GameTime.Paused)
+			return;
+		
 		if (_cooldown > 0)
 			_cooldown -= Time.deltaTime;
 	}

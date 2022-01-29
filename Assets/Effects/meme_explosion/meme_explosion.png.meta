@@ -75,6 +75,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -508,6 +509,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      meme_explosion_10: 6686976771522438894
+      meme_explosion_9: -2417867543575889039
+      meme_explosion_12: 2779523954486255479
+      meme_explosion_2: 7069831470429223626
+      meme_explosion_8: 5473897457595347566
+      meme_explosion_6: -5276803597728929564
+      meme_explosion_15: 7905515278393846065
+      meme_explosion_3: 4162425376968494246
+      meme_explosion_14: -1318292562369030723
+      meme_explosion_16: -2805843123216701904
+      meme_explosion_11: -2228627500859596400
+      meme_explosion_4: 6923446357083432082
+      meme_explosion_13: -626146439957603531
+      meme_explosion_0: -5851286665848871617
+      meme_explosion_1: -458437531908107572
+      meme_explosion_5: -873968985194112636
+      meme_explosion_7: 5826771350136992063
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

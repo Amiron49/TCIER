@@ -13,7 +13,7 @@ public class PlayerGun : MonoBehaviour
     {
         _transform = transform;
         _guns = GetComponentsInChildren<BulletEmitter>();
-        var bulletPrefab = Resources.Load<GameObject>("PhysicalBullet") ?? throw new Exception("Couldn't find prefab");
+        var bulletPrefab = UnityEngine.Resources.Load<GameObject>("Bullets/PhysicalBullet/PhysicalBullet") ?? throw new Exception($"Couldn't find prefab 'PhysicalBullet'");
 
         foreach (var gun in _guns)
             gun.bulletPrefab = bulletPrefab;
@@ -23,10 +23,13 @@ public class PlayerGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var target = Game.Instance.ControlManager.MouseWorldPosition;
+        if (Game.Instance.State.GameTime.Paused)
+            return;
+        
+        var target = Game.Instance.LegacyControls.MouseWorldPosition;
         _transform.LookAt2d(target);
 
-        if (!Game.Instance.ControlManager.Shoot) 
+        if (!Game.Instance.Controls.Player.Fire.IsPressed()) 
             return;
 
         foreach (var gun in _guns)

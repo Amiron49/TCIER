@@ -57,6 +57,8 @@ namespace StateMachine
 		public IState? CurrentState { get; }
 		public void SetState(string key);
 		public void LeaveCurrentState();
+		public void Pause();
+		public void Unpause();
 	}
 
 	public class StateMachine : StateBase, IStateMachine
@@ -66,6 +68,7 @@ namespace StateMachine
 		private readonly Dictionary<IState, List<TransitionTrigger>> _transitionTriggers;
 
 		public IState? CurrentState { get; private set; }
+		public bool Paused { get; private set; }
 
 		public StateMachine(string key, Dictionary<string, IState> states, Dictionary<IState, Dictionary<string, IState>> transitions,
 			Dictionary<IState, List<TransitionTrigger>> transitionTriggers) : base(key)
@@ -77,7 +80,7 @@ namespace StateMachine
 
 		public override void Update()
 		{
-			if (CurrentState == null)
+			if (Paused || CurrentState == null)
 				return;
 
 			var matchingTrigger = _transitionTriggers[CurrentState].FirstOrDefault(x => x.Trigger());
@@ -117,6 +120,16 @@ namespace StateMachine
 				throw new Exception("Something requested the current state to end. But couldn't find any");
 		}
 
+		public void Pause()
+		{
+			Paused = true;
+		}
+
+		public void Unpause()
+		{
+			Paused = false;
+		}
+
 		/// <summary>
 		/// Attempts to handle the event. If the event is not found it is given to the current State in the hope that it is relevant for them.
 		/// </summary>
@@ -138,7 +151,7 @@ namespace StateMachine
 
 	public class StateMachineBuilder
 	{
-		private readonly StateMachineConfiguration _configuration = new StateMachineConfiguration();
+		private readonly StateMachineConfiguration _configuration = new();
 
 		public void AddState(IState state)
 		{

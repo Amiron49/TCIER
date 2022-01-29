@@ -41,7 +41,7 @@ public class SeekPlayer : MonoBehaviour
 
     private void OnDestroy()
     {
-        var memeExplosion = Resources.Load<GameObject>("Effects/MemeExplosion") ?? throw new Exception("Couldn't find prefab");
+        var memeExplosion = UnityEngine.Resources.Load<GameObject>("Effects/MemeExplosion") ?? throw new Exception("Couldn't find prefab");
         Instantiate(memeExplosion, _transform.position, _transform.rotation);
     }
 }

@@ -1,9 +1,6 @@
 ﻿namespace InternalLogic
 {
-	public interface IBodyModifier
+	public interface IBodyModifier : IPropertyModifier<BodyProperties>
 	{
-		BodyModifiers Modifies { get; }
-		ModifierType How { get; }
-		float Value { get; }
 	}
 }

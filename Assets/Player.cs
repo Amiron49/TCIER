@@ -14,18 +14,31 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		Game.Instance.State.Player = this;
+
 		var movementStateMachineBuilder = new StateMachineBuilder();
-		var normalMovementState = new NormalMovementState("Normal", this, Game.Instance.ControlManager);
-		var rollingDodge = new RollingDodgeState("RollingDodge", this, Game.Instance.ControlManager);
+		var normalMovementState = new NormalMovementState("Normal", this, Game.Instance.Controls);
+		var rollingDodge = new RollingDodgeState("RollingDodge", this, Game.Instance.Controls);
 		
 		movementStateMachineBuilder.AddState(normalMovementState);
 		movementStateMachineBuilder.AddState(rollingDodge);
 		
-		movementStateMachineBuilder.AddTriggerTransition("Press Dodge", normalMovementState.Key, rollingDodge.Key, () => Game.Instance.ControlManager.Dodge);
+		movementStateMachineBuilder.AddTriggerTransition("Press Dodge", normalMovementState.Key, rollingDodge.Key, () => Game.Instance.Controls.Player.Dodge.WasPressedThisFrame());
 		movementStateMachineBuilder.AddEventTransition("", rollingDodge.Key, normalMovementState.Key);
 
 		_movementStateMachine = movementStateMachineBuilder.Build("Movement");
 		_movementStateMachine.SetState(normalMovementState.Key);
+		PauseOnGamePause();
+	}
+
+	private void PauseOnGamePause()
+	{
+		Game.Instance.State.GameTime.OnPauseChange += (_, isPaused) =>
+		{
+			if (isPaused)
+				_movementStateMachine.Pause();
+			else
+				_movementStateMachine.Unpause();
+		};
 	}
 
 	// Update is called once per frame
@@ -42,13 +55,13 @@ public class Player : MonoBehaviour
 	private class NormalMovementState : StateBase
 	{
 		private readonly Player _player;
-		private readonly ControlManager _controlManager;
+		private readonly TCIERControls _controls;
 		private readonly Rigidbody2D _rigidbody; 
 		
-		public NormalMovementState(string key, Player player, ControlManager controlManager) : base(key)
+		public NormalMovementState(string key, Player player, TCIERControls controls) : base(key)
 		{
 			_player = player;
-			_controlManager = controlManager;
+			_controls = controls;
 			_rigidbody = player.GetComponentInChildrenStrict<Rigidbody2D>();
 		}	
 
@@ -60,29 +73,29 @@ public class Player : MonoBehaviour
 			_rigidbody.MovePosition(targetPosition);
 		}
 
-		private Vector3 CalculateNextPosition(Vector3 currentPosition)
+		private Vector2 CalculateNextPosition(Vector2 currentPosition)
 		{
-			return currentPosition + _controlManager.MoveDirection * (_player.speed * Time.fixedDeltaTime);
+			return currentPosition + _controls.Player.Move.ReadValue<Vector2>() * (_player.speed * Time.fixedDeltaTime);
 		}
 	}
 	
 	private class RollingDodgeState : TimedStateBase
 	{
 		private readonly Player _player;
-		private readonly ControlManager _controlManager;
+		private readonly TCIERControls _controls;
 		private readonly Transform _transform; 
-		private Vector3 _dodgeDirection; 
+		private Vector2 _dodgeDirection; 
 		
-		public RollingDodgeState(string key, Player player, ControlManager controlManager) : base(key, player.dodgeDuration)
+		public RollingDodgeState(string key, Player player, TCIERControls controls) : base(key, player.dodgeDuration)
 		{
 			_player = player;
-			_controlManager = controlManager;
+			_controls = controls;
 			_transform = player.GetComponentStrict<Transform>();
 		}
 
 		protected override void OnEnterInternal(object? @event)
 		{
-			_dodgeDirection = _controlManager.MoveDirection.normalized;
+			_dodgeDirection = _controls.Player.Move.ReadValue<Vector2>().normalized;
 			_player.gameObject.layer = LayerMask.NameToLayer("Dodge");
 		}
 
@@ -90,7 +103,7 @@ public class Player : MonoBehaviour
 		{
 			var currentPosition = _transform.position;
 			var targetPosition = CalculateNextPosition(currentPosition);
-			_transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);
+			_transform.position = Vector2.Lerp(currentPosition, targetPosition, Time.deltaTime);
 		}
 
 		public override void OnLeave()
@@ -99,9 +112,10 @@ public class Player : MonoBehaviour
 			base.OnLeave();
 		}
 
-		private Vector3 CalculateNextPosition(Vector3 start)
+		private Vector2 CalculateNextPosition(Vector2 start)
 		{
 			return start + _dodgeDirection * _player.dodgeSpeed;
 		}
 	}
 }
+

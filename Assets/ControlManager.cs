@@ -1,24 +1,18 @@
 ﻿using Helpers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ControlManager
 {
-	public Vector3 MoveDirection { get; private set; }
 	public Vector3 MousePosition { get; private set; }
+
 	public Vector3 MouseWorldPosition { get; private set; }
-	public bool Dodge { get; private set; }
-	public bool Shoot { get; private set; }
 
 	public void Update()
 	{
-		var vertical = Input.GetAxis("Vertical");
-		var horizontal = Input.GetAxis("Horizontal");
-
-		MoveDirection = Vector2.ClampMagnitude(new Vector2(horizontal, vertical), 1);
-		MoveDirection.Normalize();
-		Dodge = Input.GetButtonDown("Jump");
-		Shoot = Input.GetButton("Fire1");
-		MousePosition = Input.mousePosition;
+		//Todo abstract away as cursor object
+		var vector2Control = InputSystem.GetDevice<Mouse>().position;
+		MousePosition = new Vector3(vector2Control.x.ReadValue(), vector2Control.y.ReadValue());
 		MouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePosition).NoZ();
 	}
 }

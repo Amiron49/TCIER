@@ -4,12 +4,16 @@ using UnityEngine;
 namespace InternalLogic
 {
 	[CreateAssetMenu]
-	public class BodyEquipmentConfiguration : ScriptableObject, IBodyEquipConfig
+	public class BodyEquipmentConfiguration : ScriptableObject, IBodyEquipment
 	{
-		public string description;
-		public List<BodyModifier> modifiers;
+		[SerializeField] private string description;
+		[SerializeField] private List<BodyModifier> modifiers;
+		[SerializeField] private GameObject inventoryHusk;
+		[SerializeField] private string equipmentName;
 
+		public string Name => equipmentName;
 		public string Description => description;
+		public GameObject InventoryHusk => inventoryHusk;
 		public IEnumerable<IBodyModifier> Modifiers => modifiers;
 	}
 }

@@ -1,22 +1,25 @@
-﻿using InternalLogic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class BulletDefinition : ScriptableObject, IBulletEquipConfig
+namespace InternalLogic
 {
-	public string description;
-	public GameObject bulletPrefab;
-	public float cooldown;
-	public bool channeled;
-	public float windUp;
-	public float windDown;
-	public string bulletName;
+	[CreateAssetMenu]
+	public class BulletDefinition : ScriptableObject, IBulletEquipConfig
+	{
+		[SerializeField]
+		private string description;
+		[SerializeField]
+		private GameObject bulletPrefab;
+		[SerializeField]
+		private string bulletName;
+		[SerializeField] 
+		private List<IGunProperty> baseStats = new List<IGunProperty>();
 
-	public string Name => bulletName;
-	public string Description => description;
-	public GameObject BulletPrefab => bulletPrefab;
-	public float Cooldown => cooldown;
-	public bool Channeled => channeled;
-	public float WindUp => windUp;
-	public float WindDown => windDown;
+		public string Name => bulletName;
+		public string Description => description;
+		public GameObject BulletPrefab => bulletPrefab;
+		public Dictionary<GunProperties, float> BaseStats => baseStats.ToDictionary(x => x.Property, x => x.Value);
+	}
 }
+

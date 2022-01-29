@@ -57,3 +57,6 @@ TagManager:
   - name: Bullet Emitters
     uniqueID: 1285925733
     locked: 0
+  - name: ExtraUI
+    uniqueID: 3348848603
+    locked: 0
