@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Menu.UI.BubblingText
+namespace Menu.BubblingText
 {
 	public class DestroyTarget : MonoBehaviour
 	{

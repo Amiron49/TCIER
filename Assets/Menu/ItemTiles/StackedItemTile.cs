@@ -3,7 +3,7 @@ using Helpers;
 using TMPro;
 using UnityEngine;
 
-namespace Menu
+namespace Menu.ItemTiles
 {
     public class StackedItemTile : MonoBehaviour
     {

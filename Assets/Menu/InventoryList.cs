@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using InternalLogic;
 using JetBrains.Annotations;
+using Menu.ItemTiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Menu
 {
@@ -11,7 +13,7 @@ namespace Menu
 	{
 		private List<StackedItemTile> currentTiles = new();
 		public StackedItemTile tilePrefab;
-		public StatsDisplayUI statsDisplayUI;
+		[FormerlySerializedAs("statsDisplayUI")] public PropertiesDisplay propertiesDisplay;
 		[CanBeNull] 
 		public GunIndexProvider gunIndexProvider;
 		public ItemTypeFilter filter = ItemTypeFilter.Whatever;
@@ -50,13 +52,13 @@ namespace Menu
 				{
 					var current = equipTarget.Properties;
 					var preview = equipTarget.PreviewEquip(equipment);
-					statsDisplayUI.DisplayPreview(current, preview, equipTarget.IsPositiveChangeMap);
+					propertiesDisplay.DisplayPreview(current, preview, equipTarget.IsPositiveChangeMap);
 				};
 				
 				equipController.OnHoverEnd += (_, _) =>
 				{
 					var current = equipTarget.Properties;
-					statsDisplayUI.DisplayNormal(current);
+					propertiesDisplay.DisplayNormal(current);
 				};
 
 				tile.itemController = equipController;

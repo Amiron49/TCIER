@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Menu
+namespace Menu.ItemTiles
 {
 	public interface IItemController
 	{

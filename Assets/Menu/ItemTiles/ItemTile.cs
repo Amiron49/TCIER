@@ -1,11 +1,10 @@
-using System;
 using JetBrains.Annotations;
 using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
-namespace Menu
+namespace Menu.ItemTiles
 {
 	public class ItemTile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
