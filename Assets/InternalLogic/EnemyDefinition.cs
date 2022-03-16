@@ -26,6 +26,8 @@ namespace InternalLogic
 		private BodyEquipmentConfiguration? asBodyEquipment;
 		[SerializeField]
 		private int basePrice;
+		[SerializeField]
+		private string? description;
 
 		public string Name => enemyName;
 		public int Level => level;
@@ -37,6 +39,7 @@ namespace InternalLogic
 		public IGunEquipment? AsGunEquipment => asGunEquipment;
 		public IBodyEquipment? AsBodyEquipment => asBodyEquipment;
 		public int BasePrice => basePrice;
+		public string? Description => description;
 	}
 }
 

@@ -14,6 +14,7 @@ namespace InternalLogic
 		IBulletEquipConfig? AsBulletEquipment { get; }
 		IGunEquipment? AsGunEquipment { get; }
 		IBodyEquipment? AsBodyEquipment { get; }
-		int BasePrice { get; }
+		int BasePrice { get; }	
+		string? Description { get; }
 	}
 }

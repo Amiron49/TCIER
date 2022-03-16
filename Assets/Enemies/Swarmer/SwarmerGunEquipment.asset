@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b27c4f34ca94832bdbea73356e23a8d, type: 3}
   m_Name: SwarmerGunEquipment
   m_EditorClassIdentifier: 
-  description: Gain more gun slots and -literally- beat their quantity with quality.
+  description: Gain more gun slots and -literally- beat their quantity with quantity.
   modifiers:
   - modifies: 11
     how: 0

@@ -433,6 +433,24 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabNext"",
+                    ""type"": ""Button"",
+                    ""id"": ""b7f8ba3a-9c30-43a3-99ea-b2ee63dd7c05"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabPrevious"",
+                    ""type"": ""Button"",
+                    ""id"": ""78610321-ca34-40c6-b0a4-aa5b6a43dbe7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -853,6 +871,28 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03aec675-6678-4b85-b202-974598411f9b"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""TabNext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9727d4c8-2dc9-4083-af6f-4522400bec77"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""TabPrevious"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -939,6 +979,8 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_TabNext = m_UI.FindAction("TabNext", throwIfNotFound: true);
+        m_UI_TabPrevious = m_UI.FindAction("TabPrevious", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1073,6 +1115,8 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_TabNext;
+    private readonly InputAction m_UI_TabPrevious;
     public struct UIActions
     {
         private @TCIERControls m_Wrapper;
@@ -1087,6 +1131,8 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @TabNext => m_Wrapper.m_UI_TabNext;
+        public InputAction @TabPrevious => m_Wrapper.m_UI_TabPrevious;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1126,6 +1172,12 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @TabNext.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTabNext;
+                @TabNext.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTabNext;
+                @TabNext.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTabNext;
+                @TabPrevious.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTabPrevious;
+                @TabPrevious.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTabPrevious;
+                @TabPrevious.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTabPrevious;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1160,6 +1212,12 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @TabNext.started += instance.OnTabNext;
+                @TabNext.performed += instance.OnTabNext;
+                @TabNext.canceled += instance.OnTabNext;
+                @TabPrevious.started += instance.OnTabPrevious;
+                @TabPrevious.performed += instance.OnTabPrevious;
+                @TabPrevious.canceled += instance.OnTabPrevious;
             }
         }
     }
@@ -1229,5 +1287,7 @@ public partial class @TCIERControls : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnTabNext(InputAction.CallbackContext context);
+        void OnTabPrevious(InputAction.CallbackContext context);
     }
 }

@@ -28,9 +28,9 @@ namespace Helpers
 			return thing.GetComponentInChildren<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}");
 		}
 		
-		public static T GetComponentStrict<T>(this Component thing)
+		public static T GetComponentStrict<T>(this Component thing, string info = "")
 		{
-			return thing.GetComponent<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}");
+			return thing.GetComponent<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}. {info}");
 		}
 	}
 }

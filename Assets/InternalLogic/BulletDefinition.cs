@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace InternalLogic
@@ -14,11 +15,13 @@ namespace InternalLogic
 		[SerializeField]
 		private string bulletName;
 		[SerializeField] 
-		private List<IGunProperty> baseStats = new List<IGunProperty>();
+		private List<GunProperty> baseStats;
 
 		public string Name => bulletName;
 		public string Description => description;
 		public GameObject BulletPrefab => bulletPrefab;
+		[CanBeNull]
+		public GameObject MenuHusk { get; } = null;
 		public Dictionary<GunProperties, float> BaseStats => baseStats.ToDictionary(x => x.Property, x => x.Value);
 	}
 }

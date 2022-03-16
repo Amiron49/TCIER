@@ -9,7 +9,8 @@ namespace InternalLogic
 		public ModifierType how;
 		public float value;
 
-		public GunProperties Modifies => modifies;
+		public string Modifies => Enum.GetName(typeof(GunProperties), ModifiesTyped);
+		public GunProperties ModifiesTyped => modifies;
 		public ModifierType How => how;
 		public float Value => value;
 	}

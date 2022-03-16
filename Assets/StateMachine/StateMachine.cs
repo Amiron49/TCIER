@@ -93,6 +93,9 @@ namespace StateMachine
 
 		public override void FixedUpdate()
 		{
+			if (Paused || CurrentState == null)
+				return;
+			
 			CurrentState?.FixedUpdate();
 		}
 

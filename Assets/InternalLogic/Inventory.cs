@@ -24,6 +24,14 @@ namespace InternalLogic
 			Unused.Add(enemyAsEquipment);
 			UnusedChange.Invoke(this, EventArgs.Empty);
 		}
+		
+		public void Take<TEquipment>(TEquipment enemyAsEquipment)
+		{
+			var matchingEquipment = Unused.First(x => Equals(x.BodyEquipment, enemyAsEquipment) || Equals(x.GunEquipment, enemyAsEquipment));
+			Unused.Remove(matchingEquipment);
+			Used.Add(matchingEquipment);
+			UnusedChange.Invoke(this, EventArgs.Empty);
+		}
 
 		public void Return<TEquipment, TModifier, TProperty>(TEquipment equipment)
 			where TEquipment : IEquipment<TModifier, TProperty>
@@ -32,6 +40,7 @@ namespace InternalLogic
 			var matchingEquipment = Used.First(x => Equals(x.BodyEquipment, equipment) || Equals(x.GunEquipment, equipment));
 			Used.Remove(matchingEquipment);
 			Unused.Add(matchingEquipment);
+			UnusedChange.Invoke(this, EventArgs.Empty);
 		}
 	}
 

@@ -18,9 +18,10 @@ namespace InternalLogic
 		public string Name => equipmentName;
 
 		public string Description => description;
+		public IEnumerable<IPropertyModifier> Modifiers => ModifiersTyped;
 
 		public GameObject InventoryHusk => inventoryHusk;
 
-		public IEnumerable<IGunModifier> Modifiers => modifiers;
+		public IEnumerable<IGunModifier> ModifiersTyped => modifiers;
 	}
 }

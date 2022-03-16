@@ -9,7 +9,8 @@ namespace InternalLogic
 		public ModifierType how;
 		public float value;
 
-		public BodyProperties Modifies => modifies;
+		public string Modifies => Enum.GetName(typeof(BodyProperties), ModifiesTyped);
+		public BodyProperties ModifiesTyped => modifies;
 		public ModifierType How => how;
 		public float Value => value;
 	}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,9 @@ namespace UI
 
         public FitType fitType;
 
+        public bool clampDimensions = false;
+        public int clampedHeight = 0;
+        public int clampedWidth = 0;
         public int rows;
         public int columns;
         public Vector2 cellSize;
@@ -38,9 +42,15 @@ namespace UI
             var parentWidth = rectTransformRect.width;
             var parentHeight = rectTransformRect.height;
 
-            var cellWidth = parentWidth / columns - spacing.x / columns * (columns - 1) - padding.left / (float)columns - padding.right / (float)columns;
-            var cellHeight = parentHeight / rows - spacing.y / rows * (rows - 1) - padding.top / (float)rows - padding.bottom / (float)rows;
+            var cellWidth = CalcCellWidth(parentWidth);
+            var cellHeight = CalcCellHeight(parentHeight);
 
+            if (clampDimensions)
+            {
+                cellWidth = Mathf.Min(cellWidth, clampedWidth);
+                cellHeight = Mathf.Min(cellHeight, clampedHeight);
+            }
+            
             cellSize.x = cellWidth;
             cellSize.y = cellHeight;
 
@@ -58,6 +68,16 @@ namespace UI
                 SetChildAlongAxis(item, 1, yPos, cellSize.y);
             }
 
+        }
+
+        private float CalcCellHeight(float parentHeight)
+        {
+            return parentHeight / rows - spacing.y / rows * (rows - 1) - padding.top / (float)rows - padding.bottom / (float)rows;
+        }
+
+        private float CalcCellWidth(float parentWidth)
+        {
+            return parentWidth / columns - spacing.x / columns * (columns - 1) - padding.left / (float)columns - padding.right / (float)columns;
         }
 
         public override void CalculateLayoutInputVertical() { }

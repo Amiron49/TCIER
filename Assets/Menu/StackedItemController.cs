@@ -1,4 +1,6 @@
-﻿namespace Menu
+﻿using System;
+
+namespace Menu
 {
 	public class StackedItemController : IItemController
 	{
@@ -25,6 +27,34 @@
 			_stackedItemTile.Decrement();
 
 			return true;
+		}
+
+		public event EventHandler OnHoverStart
+		{
+			add => _plainController.OnHoverStart += value;
+			remove => _plainController.OnHoverStart -= value;
+		}
+
+		public void HoverStart()
+		{
+			_plainController.HoverStart();
+		}
+
+		public event EventHandler OnHoverEnd
+		{
+			add => _plainController.OnHoverEnd += value;
+			remove => _plainController.OnHoverEnd -= value;
+		}
+
+		public void HoverEnd()
+		{
+			_plainController.HoverEnd();
+		}
+
+		public event EventHandler OnUseSuccess
+		{
+			add => _plainController.OnUseSuccess += value;
+			remove => _plainController.OnUseSuccess -= value;
 		}
 	}
 }

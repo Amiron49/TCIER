@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Menu
@@ -6,6 +7,7 @@ namespace Menu
     {
         public string UserFriendlyName;
         public string InternalIdentifier;
+        [CanBeNull] public GameObject DefaultFocus;
     
         // Start is called before the first frame update
         void Start()

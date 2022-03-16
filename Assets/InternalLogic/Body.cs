@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace InternalLogic
 {
-	public class Body : SlotLimitedInventory<IBodyEquipment, IBodyModifier, BodyProperties>
+	public sealed class Body : SlotLimitedEquipper<IBodyEquipment, IBodyModifier, BodyProperties>
 	{
-		public List<Gun> Guns { get; } = new List<Gun>();
+		public List<Gun> Guns { get; } = new();
 
 		protected override BodyProperties SlotChangingProperty => BodyProperties.Slots;
 
@@ -14,12 +14,13 @@ namespace InternalLogic
 		
 		public Body(Inventory inventory) : base(inventory)
 		{
+			RecalculateProperties();
 		}
 
 		protected override void RecalculateProperties()
 		{
 			base.RecalculateProperties();
-			var maxGuns = Properties.Single(x => x.Key == BodyProperties.Slots).Value;
+			var maxGuns = PropertiesTyped.Single(x => x.Key == BodyProperties.Slots).Value;
 			var gunOverflow = Guns.Count - (int)maxGuns;
 			
 			if (gunOverflow == 0)
@@ -38,7 +39,7 @@ namespace InternalLogic
 			OnGunCountChange?.Invoke(this, gunOverflow);
 		}
 
-		protected override Dictionary<BodyProperties, float> BaseStats()
+		protected override Dictionary<BodyProperties, float> BaseStatsTyped()
 		{
 			return new Dictionary<BodyProperties, float>
 			{
@@ -50,6 +51,16 @@ namespace InternalLogic
 				{BodyProperties.DamagingDashes, 0}
 			};
 		}
+
+		public override Dictionary<string, bool> IsPositiveChangeMap => new Dictionary<BodyProperties, bool>
+		{
+			{BodyProperties.Dashes, true},
+			{BodyProperties.Emitters, true},
+			{BodyProperties.Health, true},
+			{BodyProperties.Slots, true},
+			{BodyProperties.Speed, true},
+			{BodyProperties.DamagingDashes, true}
+		}.ToStringDictionary();
 	}
 
 	public delegate void GunCountChanged(object sender, int difference);

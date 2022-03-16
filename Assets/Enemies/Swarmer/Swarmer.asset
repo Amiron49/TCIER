@@ -18,7 +18,8 @@ MonoBehaviour:
   maxConcurrent: 100
   menuHuskPrefab: {fileID: 740631009372181538, guid: bf47f5494fcf63a448e71aac3defaae4, type: 3}
   enemyPrefab: {fileID: 4737301552016695976, guid: 75e5e8b9b0b29f4448fff265641a6ee0, type: 3}
-  asBulletEquipment: {fileID: 0}
+  asBulletEquipment: {fileID: 11400000, guid: 0952c3655232da042b91060d4bddfcaa, type: 2}
   asGunEquipment: {fileID: 11400000, guid: ba3f61ba18bc0b648b2462277103adcf, type: 2}
   asBodyEquipment: {fileID: 11400000, guid: 25961116656901b469a60968a5f63c45, type: 2}
   basePrice: 500
+  description: Follows you wherever you go. Can't go more basic than that :>

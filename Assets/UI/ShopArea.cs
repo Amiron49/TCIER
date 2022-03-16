@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace UI
 {
-	public class SpawnBuyTiles : MonoBehaviour
+	public class ShopArea : MonoBehaviour
 	{
 		public BuyTile buyTilePrefab;
+		public BuyDetails buyDetailsDisplay;
     
 		// Start is called before the first frame update
 		void Start()
@@ -19,6 +20,10 @@ namespace UI
 		{
 			var tile = Instantiate(buyTilePrefab, transform);
 			tile.enemyDefinition = definition;
+			tile.OnHover += (sender, enemyDefinition) =>
+			{
+				buyDetailsDisplay.RefreshText(enemyDefinition);
+			};
 			tile.RefreshState();
 		}
     

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using InternalLogic;
-using StateMachine;
+using Menu;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -25,7 +24,14 @@ public class Game : MonoBehaviour
 		LegacyControls = new ControlManager();
 		State.GameTime.OnPauseChange += (_, isPaused) =>
 		{
-			// Time.timeScale = isPaused ? 0 : 1;
+			if (isPaused)
+			{
+				Controls.UI.Enable();
+			}
+			else
+			{
+				Controls.UI.Disable();
+			}
 		};
 		State.AddMoney(20000);
 	}
@@ -56,5 +62,11 @@ public static class GameObjectExtensions
 		var bubbleText = Object.Instantiate(Game.Instance.bubbleTextPrefab, position, Quaternion.identity, gameObject.transform);
 		var textObject = bubbleText.GetComponentInChildren<TMP_Text>();
 		textObject.text = text;
+	}
+	
+	public static void BubbleTextOnMe(this ItemTile itemTile, string text)
+	{
+		var rectTransform = itemTile.GetComponent<RectTransform>();
+		itemTile.gameObject.BubbleTextOnMe(text,  new Vector3(0, rectTransform.sizeDelta.y / 2, 0) );
 	}
 }

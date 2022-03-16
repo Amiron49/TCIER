@@ -7,6 +7,14 @@ namespace InternalLogic
 {
 	public static class CharacterPropertyHelper
 	{
+		public static Dictionary<TProperty, float> WithEquipment<TPropertyModifier, TProperty, TEquipment>(this Dictionary<TProperty, float> properties,
+			IEnumerable<TEquipment> equipment)
+			where TPropertyModifier: IPropertyModifier<TProperty>
+			where TEquipment : IEquipment<TPropertyModifier, TProperty>
+		{
+			return properties.WithAddedModifiers(equipment.SelectMany(x => x.ModifiersTyped));
+		}
+		
 		public static Dictionary<TProperty, float> WithAddedModifiers<TPropertyModifier, TProperty>(this Dictionary<TProperty, float> properties,
 			IEnumerable<TPropertyModifier> modifiers)
 			where TPropertyModifier : IPropertyModifier<TProperty>
@@ -16,10 +24,10 @@ namespace InternalLogic
 			var multiplicativeModifiers = gunModifiers.Where(x => x.How == ModifierType.Multiply);
 
 			foreach (var additiveModifier in additiveModifiers)
-				properties[additiveModifier.Modifies] += additiveModifier.Value;
+				properties[additiveModifier.ModifiesTyped] += additiveModifier.Value;
 
 			foreach (var multiplicativeModifier in multiplicativeModifiers)
-				properties[multiplicativeModifier.Modifies] *= multiplicativeModifier.Value;
+				properties[multiplicativeModifier.ModifiesTyped] *= multiplicativeModifier.Value;
 
 			return properties;
 		}
