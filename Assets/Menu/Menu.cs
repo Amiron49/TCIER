@@ -77,7 +77,7 @@ namespace Menu
 			Current = DefaultPage;
 			RefreshState();
 		}
-
+		
 		public void Next()
 		{
 			var next = GetNextPage();
@@ -131,7 +131,7 @@ namespace Menu
 
 			text.gameObject.SetActive(true);
 			button.gameObject.SetActive(true);
-			text.text = page.UserFriendlyName;
+			text.text = page.UserFriendlyName ?? page.InternalIdentifier;
 		}
 
 		[CanBeNull]
@@ -148,6 +148,21 @@ namespace Menu
 			var currentIndex = _pages.IndexOf(Current!);
 			var isEnd = currentIndex <= 0;
 			return isEnd ? null : _pages[currentIndex - 1];
+		}
+
+		public void AddPage(MenuPage menuPage)
+		{
+			if (_pages.Any(x => x.InternalIdentifier == menuPage.InternalIdentifier))
+				throw new Exception($"Cannot add MenuPage {menuPage.InternalIdentifier} identifier: Duplicate identifier");
+			
+			_pages.Add(menuPage);
+			RefreshState();
+		}
+		
+		public void Remove(string internalIdentifier)
+		{
+			_pages.RemoveAll(x => x.InternalIdentifier == internalIdentifier);
+			RefreshState();
 		}
 
 		// Update is called once per frame

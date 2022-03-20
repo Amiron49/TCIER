@@ -11,42 +11,43 @@ namespace Menu
 	public class BulletSelection : MonoBehaviour
 	{
 		private Gun SelectionFor { get; set; }
-		[FormerlySerializedAs("statsDisplayUI")] public PropertiesDisplay propertiesDisplay;
+
+		[FormerlySerializedAs("statsDisplayUI")]
+		public PropertiesDisplay propertiesDisplay;
+
 		public GunIndexProvider gunIndexProvider;
 		public ItemTile itemTilePrefab;
 
 		private readonly List<IEnemyConfiguration> _alreadyRenderedConfigurations = new();
 
+		private ChildrenSync<Component, IEnemyConfiguration> _childrenSync;
+
 		// Start is called before the first frame update
 		void Start()
 		{
 			SelectionFor = Game.Instance.State.Inventory.Body.Guns[gunIndexProvider.gunIndex];
+			_childrenSync = new ChildrenSync<Component, IEnemyConfiguration>(gameObject, CreateTile);
 			Refresh();
 		}
 
 		private void OnEnable()
 		{
+			if (_childrenSync == null)
+				return;
+			
 			Refresh();
 		}
 
 		private void Refresh()
 		{
-			var everBoughtEnemies = Game.Instance.State.EnemyStatistics.Where(x => x.Key.AsBulletEquipment != null && x.Value.BuyCount > 0).ToArray();
+			var everBoughtEnemies = Game.Instance.State.EnemyStatistics
+				.Where(x => x.Key.AsBulletEquipment != null && x.Value.BuyCount > 0)
+				.Select(x => x.Key).ToList();
 
-			var difference = everBoughtEnemies.Length - _alreadyRenderedConfigurations.Count;
-			if (difference <= 0)
-				return;
-		
-			var newOnes = everBoughtEnemies[..difference];
-
-			foreach (var (enemyConfiguration, _) in newOnes)
-			{
-				AddAsTile(enemyConfiguration);
-				_alreadyRenderedConfigurations.Add(enemyConfiguration);
-			}
+			_childrenSync.Update(everBoughtEnemies);
 		}
 
-		private void AddAsTile(IEnemyConfiguration enemyConfiguration)
+		private Component CreateTile(IEnemyConfiguration enemyConfiguration)
 		{
 			var controller = new ItemController();
 
@@ -54,26 +55,20 @@ namespace Menu
 			{
 				throw new Exception($"No defined bulletEquip on {enemyConfiguration.Name}");
 			}
-		
+
 			controller.OnUseSuccess += (_, _) => SelectionFor.Equip(enemyConfiguration.AsBulletEquipment!);
 			controller.OnHoverStart += (_, _) =>
 			{
 				var preview = SelectionFor.PreviewEquip(enemyConfiguration.AsBulletEquipment!).ToStringDictionary();
 				propertiesDisplay.DisplayPreview(SelectionFor.Properties, preview, SelectionFor.IsPositiveChangeMap);
 			};
-			controller.OnHoverEnd += (_, _) =>
-			{
-				propertiesDisplay.DisplayNormal(SelectionFor.Properties);
-			};
-		
+			controller.OnHoverEnd += (_, _) => { propertiesDisplay.DisplayNormal(SelectionFor.Properties); };
+
 			var itemTile = Instantiate(itemTilePrefab, transform);
 			itemTile.itemController = controller;
 			itemTile.SetItemHusk(enemyConfiguration.MenuHuskPrefab);
-		}
 
-		// Update is called once per frame
-		void Update()
-		{
+			return itemTile;
 		}
 	}
 }

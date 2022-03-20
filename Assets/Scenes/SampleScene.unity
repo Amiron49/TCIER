@@ -214,6 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216138909}
   - component: {fileID: 216138910}
+  - component: {fileID: 216138911}
   m_Layer: 8
   m_Name: GunArray
   m_TagString: Untagged
@@ -249,7 +250,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerGunPrefab: {fileID: 5749512936523688326, guid: fe1b3822814de2a429e075016747a8e7, type: 3}
-  DefaultBulletPrefab: {fileID: 0}
+  DefaultBulletPrefab: {fileID: 178377613331147149, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
+--- !u!114 &216138911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216138908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bffd0bb059d624f42859f3f9aa44f6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &245905639
 GameObject:
   m_ObjectHideFlags: 0
@@ -3258,6 +3271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2012736187}
+  - component: {fileID: 2012736188}
   m_Layer: 5
   m_Name: Emitters
   m_TagString: Untagged
@@ -3286,6 +3300,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2012736188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012736186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1bb7b6e6376ed4997501ad6977dd92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainMenuManager: {fileID: 1084962686}
+  EmitterEditorPrefab: {fileID: 7768607698728532633, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
 --- !u!1 &2036822512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,6 +3875,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2012736187}
     m_Modifications:
+    - target: {fileID: 2380454092475371990, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
+      propertyPath: cellSize.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380454092475371990, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
+      propertyPath: cellSize.y
+      value: NaN
+      objectReference: {fileID: 0}
     - target: {fileID: 5574166865379523216, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4014,6 +4050,14 @@ PrefabInstance:
     - target: {fileID: 5574166867017455096, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522726865315509445, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
+      propertyPath: cellSize.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522726865315509445, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
+      propertyPath: cellSize.y
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 7768607698728532632, guid: ef6d3c2887ebddd4f84c86935570f7b7, type: 3}
       propertyPath: m_Pivot.x
