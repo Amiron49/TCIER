@@ -21,6 +21,9 @@ public class PhysicalBullet : MonoBehaviour, IBullet
     // Update is called once per frame
     void Update()
     {
+        if (Game.Instance.State.GameTime.Paused)
+            return;
+        
         var currentPosition = _transform.position;
         var targetPosition = CalculateNextPosition(currentPosition);
         _transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);

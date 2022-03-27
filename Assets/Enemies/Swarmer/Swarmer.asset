@@ -21,5 +21,5 @@ MonoBehaviour:
   asBulletEquipment: {fileID: 11400000, guid: 0952c3655232da042b91060d4bddfcaa, type: 2}
   asGunEquipment: {fileID: 11400000, guid: ba3f61ba18bc0b648b2462277103adcf, type: 2}
   asBodyEquipment: {fileID: 11400000, guid: 25961116656901b469a60968a5f63c45, type: 2}
-  basePrice: 500
+  basePrice: 50
   description: Follows you wherever you go. Can't go more basic than that :>

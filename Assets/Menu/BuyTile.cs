@@ -26,6 +26,8 @@ namespace Menu
 			enemyHusk.AddComponent<ScaleWithParent>();
 			enemyHusk.layer = LayerMask.NameToLayer("UI");
 			enemyHusk.transform.position -= Vector3.forward * 2;
+			Game.Instance.State.EnemyStatistics[EnemyDefinition].OnBuyCountChange += (_, _) => RefreshState();
+			Game.Instance.State.EnemyStatistics[EnemyDefinition].OnKillCountChange += (_, _) => RefreshState();
 		}
 
 		public void Buy()
@@ -33,7 +35,10 @@ namespace Menu
 			var price = CalculatePrice();
 
 			if (price > Game.Instance.State.Money)
+			{
+				gameObject.BubbleTextOnMe("Not enough money");
 				return;
+			}
 
 			Game.Instance.State.RemoveMoney(price);
 
@@ -68,7 +73,7 @@ namespace Menu
 		private int CalculatePrice()
 		{
 			var statistics = Game.Instance.State.EnemyStatistics[EnemyDefinition];
-			var price = EnemyDefinition.BasePrice - statistics.KillCount;
+			var price = Math.Max(EnemyDefinition.BasePrice * statistics.BuyCount - statistics.KillCount, EnemyDefinition.BasePrice);
 
 			return price;
 		}

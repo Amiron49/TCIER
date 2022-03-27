@@ -38,7 +38,6 @@ public class State
 	}
 }
 
-
 public class CustomTime : ITimeFrame
 {
 	private bool _paused;

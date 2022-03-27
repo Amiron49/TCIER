@@ -35,7 +35,6 @@ public class Game : MonoBehaviour
 				Controls.UI.Disable();
 			}
 		};
-		State.AddMoney(20000);
 		MainCamera = Camera.main;
 	}
 

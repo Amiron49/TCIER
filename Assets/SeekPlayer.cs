@@ -9,6 +9,7 @@ public class SeekPlayer : MonoBehaviour
     private Transform _playerTransform;
     private Transform _transform;
     private Rigidbody2D _rigidbody;
+    public GameObject DeathExplosion;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,9 @@ public class SeekPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (Game.Instance.State.GameTime.Paused)
+            return;
+        
         var currentPosition = _transform.position;
         var targetPosition = CalculateNextPosition(currentPosition, _playerTransform.position);
         _rigidbody.MovePosition(targetPosition);
@@ -41,7 +45,6 @@ public class SeekPlayer : MonoBehaviour
 
     private void OnDestroy()
     {
-        var memeExplosion = UnityEngine.Resources.Load<GameObject>("Effects/MemeExplosion") ?? throw new Exception("Couldn't find prefab");
-        Instantiate(memeExplosion, _transform.position, _transform.rotation);
+        Instantiate(DeathExplosion, _transform.position, _transform.rotation);
     }
 }
