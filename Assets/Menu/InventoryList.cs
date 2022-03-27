@@ -11,61 +11,66 @@ namespace Menu
 {
 	public class InventoryList : MonoBehaviour
 	{
-		private List<StackedItemTile> currentTiles = new();
 		public StackedItemTile tilePrefab;
 		[FormerlySerializedAs("statsDisplayUI")] public PropertiesDisplay propertiesDisplay;
 		[CanBeNull] 
 		public GunIndexProvider gunIndexProvider;
 		public ItemTypeFilter filter = ItemTypeFilter.Whatever;
-
-		private void Awake()
-		{
-			Game.Instance.State.Inventory.UnusedChange += (_, _) => Refresh();
-		}
+		private ChildrenSync<StackedItemTile, IEnemyAsEquipment, int> _childrenSync;
 
 		// Start is called before the first frame update
 		void Start()
 		{
+			_childrenSync = new ChildrenSync<StackedItemTile, IEnemyAsEquipment, int>(CreateItemTile, UpdateItemTile);
+			Game.Instance.State.Inventory.UnusedChange += (_, _) => Refresh();
+			Refresh();
 		}
-
+		
 		void Refresh()
 		{
-			var fullList = Game.Instance.State.Inventory.Unused.Where(CreateSearch()).GroupBy(x => x.InventoryHusk).ToList();
+			if (_childrenSync == null)
+				return;
+			
+			var fullList = Game.Instance.State.Inventory.Unused.Where(CreateSearch())
+				.GroupBy(x => x.InventoryHusk)
+				.Select(x => (x.First(), x.Count())).ToList();
 
-			foreach (var currentTile in currentTiles)
-				Destroy(currentTile.gameObject);
-
-			currentTiles.Clear();
-
-			foreach (var group in fullList)
-			{
-				var tileStack = Instantiate(tilePrefab, gameObject.transform);
-				var tile = tileStack.GetComponent<ItemTile>();
-				tileStack.SetAmount(group.Count());
-				var enemyAsEquipment = @group.First();
-				tile.InitialItemHusk = enemyAsEquipment.InventoryHusk;
-				var equipTarget = GetEquipper();
-				var equipment = GetEquipment(enemyAsEquipment);
-				var equipController = new EquipController(equipTarget, equipment);
-
-				equipController.OnHoverStart += (_, _) =>
-				{
-					var current = equipTarget.Properties;
-					var preview = equipTarget.PreviewEquip(equipment);
-					propertiesDisplay.DisplayPreview(current, preview, equipTarget.IsPositiveChangeMap);
-				};
-				
-				equipController.OnHoverEnd += (_, _) =>
-				{
-					var current = equipTarget.Properties;
-					propertiesDisplay.DisplayNormal(current);
-				};
-
-				tile.itemController = equipController;
-				currentTiles.Add(tileStack);
-			}
+			_childrenSync.Update(fullList);
 		}
 
+		private StackedItemTile CreateItemTile(IEnemyAsEquipment enemyAsEquipment, int stackedCount)
+		{
+			var tileStack = Instantiate(tilePrefab, gameObject.transform);
+			var tile = tileStack.GetComponent<ItemTile>();
+			tileStack.SetAmount(stackedCount);
+			tile.InitialItemHusk = enemyAsEquipment.InventoryHusk;
+			var equipTarget = GetEquipper();
+			var equipment = GetEquipment(enemyAsEquipment);
+			var equipController = new EquipController(equipTarget, equipment);
+
+			equipController.OnHoverStart += (_, _) =>
+			{
+				var current = equipTarget.Properties;
+				var preview = equipTarget.PreviewEquip(equipment);
+				propertiesDisplay.DisplayPreview(current, preview, equipTarget.IsPositiveChangeMap);
+			};
+				
+			equipController.OnHoverEnd += (_, _) =>
+			{
+				var current = equipTarget.Properties;
+				propertiesDisplay.DisplayNormal(current);
+			};
+
+			tile.itemController = equipController;
+
+			return tileStack;
+		}
+
+		private void UpdateItemTile(StackedItemTile stackedItemTile, int updatedCount)
+		{
+			stackedItemTile.SetAmount(updatedCount);
+		}
+		
 		private ISlotLimitedEquipper GetEquipper()
 		{
 			return filter switch

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DamageSource : MonoBehaviour, IDamageSource
 {
-    public int damage;
+    public float damage;
 
-    public int Damage
+    public float Damage
     {
         get => damage;
         set => damage = value;
@@ -38,7 +38,7 @@ public class DamageSource : MonoBehaviour, IDamageSource
 }
 public interface IDamageSource
 {
-    public int Damage { get; set; }
+    public float Damage { get; set; }
     public Team For { get; set; }
 }
 

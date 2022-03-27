@@ -214,7 +214,6 @@ GameObject:
   m_Component:
   - component: {fileID: 216138909}
   - component: {fileID: 216138910}
-  - component: {fileID: 216138911}
   m_Layer: 8
   m_Name: GunArray
   m_TagString: Untagged
@@ -251,18 +250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerGunPrefab: {fileID: 5749512936523688326, guid: fe1b3822814de2a429e075016747a8e7, type: 3}
   DefaultBulletPrefab: {fileID: 178377613331147149, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
---- !u!114 &216138911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216138908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bffd0bb059d624f42859f3f9aa44f6fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &245905639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,9 +1164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f76810fdf7803f4b9efde38f5f844ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1027544999}
-  description: {fileID: 1549080409}
-  stats: {fileID: 384632532}
+  Title: {fileID: 1027544999}
+  Description: {fileID: 1549080409}
+  Stats: {fileID: 384632532}
 --- !u!224 &1016847444 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5388189615018637447, guid: 6190b5ec4ac333a4397aa70c2141c6b7, type: 3}

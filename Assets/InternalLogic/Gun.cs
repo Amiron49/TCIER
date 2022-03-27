@@ -18,7 +18,7 @@ namespace InternalLogic
 			get => _offset;
 			set
 			{
-				_offset = value; 
+				_offset = value;
 				OnOffsetChange?.Invoke(this, value);
 			}
 		}

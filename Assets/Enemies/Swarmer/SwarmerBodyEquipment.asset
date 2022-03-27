@@ -17,5 +17,8 @@ MonoBehaviour:
   - modifies: 1
     how: 0
     value: 1
+  - modifies: 5
+    how: 0
+    value: 1
   inventoryHusk: {fileID: 740631009372181538, guid: bf47f5494fcf63a448e71aac3defaae4, type: 3}
   equipmentName: SwarmerBodyEquipment

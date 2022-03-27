@@ -12,7 +12,7 @@ namespace InternalLogic
 		public List<IEnemyAsEquipment> Unused { get; } = new List<IEnemyAsEquipment>();
 		private List<IEnemyAsEquipment> Used { get; } = new List<IEnemyAsEquipment>();
 
-		public event EventHandler UnusedChange; 
+		public event EventHandler? UnusedChange; 
 
 		public Inventory()
 		{
@@ -22,7 +22,7 @@ namespace InternalLogic
 		public void Add(IEnemyAsEquipment enemyAsEquipment)
 		{
 			Unused.Add(enemyAsEquipment);
-			UnusedChange.Invoke(this, EventArgs.Empty);
+			UnusedChange?.Invoke(this, EventArgs.Empty);
 		}
 		
 		public void Take<TEquipment>(TEquipment enemyAsEquipment)

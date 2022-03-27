@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd70584b88447fb9bfa558742d0c4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
-  damages: 2
-  bulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
+  Damages: 2
+  BulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
+  DefaultBulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
 --- !u!114 &4201230486629396812
 MonoBehaviour:
   m_ObjectHideFlags: 0

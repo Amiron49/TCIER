@@ -7,8 +7,10 @@ namespace Menu
 {
     public class EmitterPositionEditor : MonoBehaviour, IDragHandler, IInitializePotentialDragHandler
     {
-        public Gun EditorFor;
+        private Gun _editorFor;
+        public GunIndexProvider GunIndexProvider;
         public RectTransform RectTransformToMove;
+        public RectTransform PlayerStandIn;
         private RectTransform _parentRectTransform;
         private Camera _associatedCamera;
 
@@ -18,23 +20,28 @@ namespace Menu
             RectTransformToMove ??= this.GetComponentStrict<RectTransform>();
             _associatedCamera = RectTransformToMove.root.GetComponent<Canvas>().rootCanvas.worldCamera;
             _parentRectTransform = RectTransformToMove.parent.GetComponentStrict<RectTransform>();
+            _editorFor = Game.Instance.State.Inventory.Body.Guns[GunIndexProvider.gunIndex];
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
-
-        private void OnMouseDrag()
-        {
-            Debug.Log("mouseDrag", this);
-        }
-    
         public void OnDrag(PointerEventData eventData)
+        {
+            MoveTargetRectangle(eventData);
+            _editorFor.Offset = CalculateOffset();
+        }
+
+        private void MoveTargetRectangle(PointerEventData eventData)
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_parentRectTransform, eventData.position, _associatedCamera, out var localPoint);
             RectTransformToMove.localPosition = localPoint;
+        }
+
+        private Vector2 CalculateOffset()
+        {
+            var sizeOne = PlayerStandIn.sizeDelta / 2;
+            var distance = RectTransformToMove.position - PlayerStandIn.position;
+            var distanceInProportionToSizeOne = distance / sizeOne;
+            
+            return distanceInProportionToSizeOne;
         }
 
         public void OnInitializePotentialDrag(PointerEventData eventData)

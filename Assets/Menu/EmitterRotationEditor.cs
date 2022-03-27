@@ -7,7 +7,8 @@ namespace Menu
 {
     public class EmitterRotationEditor : MonoBehaviour, IDragHandler, IInitializePotentialDragHandler
     {
-        public Gun EditorFor;
+        private Gun _editorFor;
+        public GunIndexProvider GunIndexProvider;
         public RectTransform RectTransformToRotate;
         private RectTransform _parentRectTransform;
         private Camera _associatedCamera;
@@ -17,6 +18,7 @@ namespace Menu
         {
             _associatedCamera = RectTransformToRotate.root.GetComponent<Canvas>().rootCanvas.worldCamera;
             _parentRectTransform = RectTransformToRotate.parent.GetComponentStrict<RectTransform>();
+            _editorFor = Game.Instance.State.Inventory.Body.Guns[GunIndexProvider.gunIndex];
         }
 
         // Update is called once per frame
@@ -29,7 +31,7 @@ namespace Menu
         {
             RectTransformUtility.ScreenPointToWorldPointInRectangle(_parentRectTransform, eventData.position, _associatedCamera, out var localPoint);
             RectTransformToRotate.LookAt2d(localPoint);
-            EditorFor.Rotation = RectTransformToRotate.rotation;
+            _editorFor.Rotation = RectTransformToRotate.rotation;
         }
     
         public void OnInitializePotentialDrag(PointerEventData eventData)

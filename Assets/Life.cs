@@ -4,8 +4,8 @@ public class Life : MonoBehaviour, ITakeDamage
 {
     public bool invincible = false;
     public Team team;
-    public int health = 100;
-    public int CurrentHealth { get; set; } = 100;
+    public float health = 100;
+    public float CurrentHealth { get; set; } = 100;
     public GameObject onDeathDestroy;
     public event DamageReceive OnDamageTaken;
     public event HealthChange OnHealthChange;
@@ -38,7 +38,7 @@ public class Life : MonoBehaviour, ITakeDamage
 }
 
 public delegate void DamageReceive(object sender, IDamageSource source);
-public delegate void HealthChange(object sender, int from, int to);
+public delegate void HealthChange(object sender, float from, float to);
 
 public interface ITakeDamage
 {

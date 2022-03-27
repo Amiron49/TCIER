@@ -20,23 +20,29 @@ namespace InternalLogic
 		protected override void RecalculateProperties()
 		{
 			base.RecalculateProperties();
-			var maxGuns = PropertiesTyped.Single(x => x.Key == BodyProperties.Slots).Value;
-			var gunOverflow = Guns.Count - (int)maxGuns;
-			
-			if (gunOverflow == 0)
+			RecalculateEmitters();
+		}
+
+		private void RecalculateEmitters()
+		{
+			var maxGuns = PropertiesTyped.Single(x => x.Key == BodyProperties.Emitters).Value;
+			var change = (int)maxGuns- Guns.Count;
+
+			if (change == 0)
 				return;
-			
-			if (gunOverflow > 0)
+
+			if (change > 0)
 			{
-				Guns.RemoveRange(Guns.Count - gunOverflow, gunOverflow);
+				for (var i = 0; i < change; i++)
+					Guns.Add(new Gun(Inventory));
 			}
 			else
 			{
-				for (var i = 0; i < Math.Abs(gunOverflow); i++)
-					Guns.Add(new Gun(Inventory));
+				var changeAbs = Math.Abs(change);
+				Guns.RemoveRange(Guns.Count - changeAbs, changeAbs);
 			}
 
-			OnGunCountChange?.Invoke(this, gunOverflow);
+			OnGunCountChange?.Invoke(this, change);
 		}
 
 		protected override Dictionary<BodyProperties, float> BaseStatsTyped()

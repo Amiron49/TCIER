@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f050c817737130940be2bd7bc58a8d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GunIndexProvider: {fileID: 7768607698728532638}
   RectTransformToRotate: {fileID: 7768607698875246698}
 --- !u!1 &7768607697668557159
 GameObject:
@@ -530,7 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UserFriendlyName: Gun#1
-  InternalIdentifier: Gun#1
+  InternalIdentifier: Gun#0
   DefaultFocus: {fileID: 0}
 --- !u!114 &7768607698728532638
 MonoBehaviour:
@@ -813,7 +814,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e2c4cfda44fe544da92d7ea31715ca1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GunIndexProvider: {fileID: 7768607698728532638}
   RectTransformToMove: {fileID: 7768607698875246698}
+  PlayerStandIn: {fileID: 7768607697668557156}
 --- !u!222 &7768607699207440468
 CanvasRenderer:
   m_ObjectHideFlags: 0

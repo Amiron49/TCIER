@@ -5,13 +5,14 @@ using Menu.ItemTiles;
 using TMPro;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+public class Game : MonoBehaviour 
 {
 	public GameObject bubbleTextPrefab;
 	public static Game Instance { get; private set; }
 	public ControlManager LegacyControls { get; private set; }
 	public TCIERControls Controls { get; private set; }
 	public State State { get; private set; }
+	public Camera MainCamera { get; private set; }
 
 	public List<EnemyDefinition> enemies = new List<EnemyDefinition>();
 
@@ -35,6 +36,7 @@ public class Game : MonoBehaviour
 			}
 		};
 		State.AddMoney(20000);
+		MainCamera = Camera.main;
 	}
 
 	private void Update()

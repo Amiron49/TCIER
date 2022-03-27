@@ -161,6 +161,7 @@ namespace Menu
 		
 		public void Remove(string internalIdentifier)
 		{
+			Debug.Log($"Removing {internalIdentifier}");
 			_pages.RemoveAll(x => x.InternalIdentifier == internalIdentifier);
 			RefreshState();
 		}

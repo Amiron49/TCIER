@@ -17,11 +17,12 @@ namespace Menu
 			_childrenSync.RememberAllCurrentChildren();
 			_childrenSync.OnDestroy += (_, args) =>
 			{
+				Debug.Log($"event {args.GameObject.InternalIdentifier}");
 				var (toBeRemoved, _) = args;
 				var asMenuPage = toBeRemoved.GetComponent<MenuPage>();
 				MainMenuManager.Remove(asMenuPage.InternalIdentifier);
 			};
-
+			
 			Game.Instance.State.Inventory.Body.OnGunCountChange += (_, difference) =>
 			{
 				_childrenSync.Change(difference);
@@ -31,9 +32,11 @@ namespace Menu
 		private MenuPage CreateEditor(int index)
 		{
 			var newEmitterMenuPage = Instantiate(EmitterEditorPrefab, transform);
+			newEmitterMenuPage.gameObject.SetActive(false);
 			newEmitterMenuPage.InternalIdentifier = $"Gun#{index}";
+			newEmitterMenuPage.UserFriendlyName = $"Gun#{index + 1}";
 			newEmitterMenuPage.GetComponent<GunIndexProvider>().gunIndex = index;
-			
+			MainMenuManager.AddPage(newEmitterMenuPage);
 			return newEmitterMenuPage;
 		}
 	}

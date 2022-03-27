@@ -3,14 +3,15 @@ using InternalLogic;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Menu
 {
     public class BuyDetails : MonoBehaviour
     {
-        public TMP_Text title;
-        public TMP_Text description;
-        public TMP_Text stats;
+        [FormerlySerializedAs("title")] public TMP_Text Title;
+        [FormerlySerializedAs("description")] public TMP_Text Description;
+        [FormerlySerializedAs("stats")] public TMP_Text Stats;
     
         // Start is called before the first frame update
         void Start()
@@ -20,17 +21,17 @@ namespace Menu
 
         public void RefreshText(IEnemyConfiguration enemyConfiguration)
         {
-            title.text = enemyConfiguration.Name;
-            description.text = enemyConfiguration.Description;
-            stats.text = Textify(enemyConfiguration);
+            Title.text = enemyConfiguration.Name;
+            Description.text = enemyConfiguration.Description;
+            Stats.text = Textify(enemyConfiguration);
 
         }
     
         public void ResetText()
         {
-            title.text = "";
-            description.text = "";
-            stats.text = "Stats";
+            Title.text = "";
+            Description.text = "";
+            Stats.text = "Stats";
         }
     
         private string Textify(IEnemyConfiguration enemyConfiguration)

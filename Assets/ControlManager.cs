@@ -13,6 +13,6 @@ public class ControlManager
 		//Todo abstract away as cursor object
 		var vector2Control = InputSystem.GetDevice<Mouse>().position;
 		MousePosition = new Vector3(vector2Control.x.ReadValue(), vector2Control.y.ReadValue());
-		MouseWorldPosition = Camera.main.ScreenToWorldPoint(MousePosition).NoZ();
+		MouseWorldPosition = Game.Instance.MainCamera.ScreenToWorldPoint(MousePosition).NoZ();
 	}
 }

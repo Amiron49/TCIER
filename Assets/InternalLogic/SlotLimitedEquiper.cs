@@ -16,7 +16,7 @@ namespace InternalLogic
 		protected List<TEquipment> EquippedTyped = new();
 		public IReadOnlyList<IEquipment> Equipped => EquippedTyped.Cast<IEquipment>().ToList();
 		public Dictionary<string, float> Properties => PropertiesTyped.ToStringDictionary();
-		protected Dictionary<TProperties, float> PropertiesTyped { get; private set; } = new();
+		public Dictionary<TProperties, float> PropertiesTyped { get; private set; } = new();
 
 		public event EventHandler? OnPropertyChange;
 

@@ -26,7 +26,7 @@ namespace Menu
 		void Start()
 		{
 			SelectionFor = Game.Instance.State.Inventory.Body.Guns[gunIndexProvider.gunIndex];
-			_childrenSync = new ChildrenSync<Component, IEnemyConfiguration>(gameObject, CreateTile);
+			_childrenSync = new ChildrenSync<Component, IEnemyConfiguration>(CreateTile);
 			Refresh();
 		}
 

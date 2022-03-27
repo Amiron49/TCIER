@@ -19,7 +19,7 @@ namespace UI
 		void AddTile(EnemyDefinition definition)
 		{
 			var tile = Instantiate(buyTilePrefab, transform);
-			tile.enemyDefinition = definition;
+			tile.EnemyDefinition = definition;
 			tile.OnHover += (sender, enemyDefinition) =>
 			{
 				buyDetailsDisplay.RefreshText(enemyDefinition);

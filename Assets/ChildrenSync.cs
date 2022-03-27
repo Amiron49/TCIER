@@ -61,13 +61,15 @@ public class ChildrenSync<T> where T : Component
 
 	private void RemoveLastN(int count)
 	{
-		var toBeRemovedEditors = _managedChildren.ToArray()[..count];
+		Debug.Log($"count: {count}");
 		var removalStartIndex = _managedChildren.Count - count;
-
+		var toBeRemovedEditors = _managedChildren.ToArray()[removalStartIndex..^(count - 1)];
+		Debug.Log($"toBeRemovedEditors count: {toBeRemovedEditors.Length}");
+		Debug.Log($"removalStartIndex: {removalStartIndex}");
 
 		for (var offset = 0; offset < toBeRemovedEditors.Length; offset++)
 		{
-			var index = removalStartIndex - offset;
+			var index = removalStartIndex + offset;
 			var toBeRemoved = toBeRemovedEditors[offset];
 			OnDestroy?.Invoke(this, (toBeRemoved, index));
 			Object.Destroy(toBeRemoved.gameObject);
@@ -78,47 +80,70 @@ public class ChildrenSync<T> where T : Component
 }
 
 
-public class ChildrenSync<T, TKey> where T : Component
+public class ChildrenSync<T, TKey> : ChildrenSync<T, TKey, TKey> where T : Component
 {
-	private readonly GameObject _self;
-	private readonly Dictionary<TKey, T> _managedChildren = new();
-	private readonly Func<TKey, T> _childFactory;
-	public event EventHandler<(TKey, T GameObject)>? OnDestroy;
-
-	public ChildrenSync(GameObject self, Func<TKey, T> childFactory)
+	public ChildrenSync(Func<TKey, T> childFactory) : base((key, _) => childFactory(key), (_, _) => { })
 	{
-		_self = self;
-		_childFactory = childFactory;
 	}
 
-	public void Update(IList<TKey> updatedList)
+	public void Update(IEnumerable<TKey> updatedList)
 	{
-		var allToAdd = updatedList.Where(potentiallyNew => !_managedChildren.Any(existing => potentiallyNew!.Equals(existing.Key)));
-		var allToRemove = _managedChildren.Where(existing => !updatedList.Any(updated => updated!.Equals(existing.Key)));
+		base.Update(updatedList.Select(x => (x, x)).ToList());
+	}
+}
+
+public class ChildrenSync<T, TKey, TState> where T : Component
+{
+	public readonly Dictionary<TKey, (TState args, T child)> ManagedChildren = new();
+	private readonly Func<TKey, TState, T> _childFactory;
+	private readonly Action<T, TState>? _updateFunc;
+	public event EventHandler<(TKey, T GameObject)>? OnDestroy;
+
+	public ChildrenSync(Func<TKey, TState, T> childFactory, Action<T, TState>? updateFunc)
+	{
+		_childFactory = childFactory;
+		_updateFunc = updateFunc;
+	}
+
+	public void Update(IList<(TKey Key, TState Args)> updatedList)
+	{
+		var allToAdd = updatedList.Where(
+			potentiallyNew => !ManagedChildren.Any(existing => potentiallyNew.Key!.Equals(existing.Key))).ToList();
+		var allToRemove = ManagedChildren.Where(existing => !updatedList.Any(updated => updated.Key!.Equals(existing.Key))).ToList();
 
 		foreach (var toRemove in allToRemove)
 		{
 			Remove(toRemove.Key);
 		}
 
-		foreach (var toAdd in allToAdd)
+		foreach (var (key, args) in allToAdd)
 		{
-			AddNew(toAdd);
+			AddNew(key, args);
+		}
+
+		if (_updateFunc == null)
+			return;
+
+		var allToUpdate = updatedList.Except(allToAdd).ToList();
+
+		foreach (var (key, args) in allToUpdate)
+		{
+			_updateFunc(ManagedChildren[key].child, args);
 		}
 	}
 
-	private void AddNew(TKey key)
+	private void AddNew(TKey key, TState args)
 	{
-		var toAdd = _childFactory(key);
-		_managedChildren[key] = toAdd;
+		var toAdd = _childFactory(key, args);
+		ManagedChildren[key] = (args, toAdd);
 	}
 
 	private void Remove(TKey key)
 	{
-		var removed = _managedChildren[key];
-		
-		OnDestroy?.Invoke(this, (key, removed));
-		Object.Destroy(removed.gameObject);
-		_managedChildren.Remove(key);
+		var (_, child) = ManagedChildren[key];
+
+		OnDestroy?.Invoke(this, (key, child));
+		Object.Destroy(child.gameObject);
+		ManagedChildren.Remove(key);
 	}
 }
