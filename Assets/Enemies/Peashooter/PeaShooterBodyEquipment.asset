@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7066df876bbe4cae820a3c06ac4bef8f, type: 3}
+  m_Name: PeaShooterBodyEquipment
+  m_EditorClassIdentifier: 
+  description: It shoots. Maybe lets you also shoot more
+  modifiers:
+  - modifies: 5
+    how: 0
+    value: 1
+  inventoryHusk: {fileID: 8997946245565213111, guid: 7a2c3db9491cba94fb11294cf4c19402, type: 3}
+  equipmentName: Peashooter

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
 #nullable enable
@@ -14,6 +13,7 @@ namespace StateMachine
 		public string Key { get; }
 		public void OnEnter(object? @event = null);
 		public void Update();
+		public void Gizmo();
 		public void FixedUpdate();
 		public void OnLeave();
 
@@ -35,6 +35,10 @@ namespace StateMachine
 		}
 
 		public virtual void Update()
+		{
+		}
+		
+		public virtual void Gizmo()
 		{
 		}
 
@@ -61,13 +65,27 @@ namespace StateMachine
 		public void Unpause();
 	}
 
+	[Serializable]
 	public class StateMachine : StateBase, IStateMachine
 	{
 		private readonly Dictionary<string, IState> _states;
 		private readonly Dictionary<IState, Dictionary<string, IState>> _transitions;
 		private readonly Dictionary<IState, List<TransitionTrigger>> _transitionTriggers;
+		
+		private IState? _currentState;
+		[SerializeField]
+		private string? _currentStateDebug;
+		
+		public IState? CurrentState
+		{
+			get => _currentState;
+			private set
+			{
+				_currentStateDebug = value?.Key;
+				_currentState = value;
+			}
+		}
 
-		public IState? CurrentState { get; private set; }
 		public bool Paused { get; private set; }
 
 		public StateMachine(string key, Dictionary<string, IState> states, Dictionary<IState, Dictionary<string, IState>> transitions,
@@ -97,6 +115,14 @@ namespace StateMachine
 				return;
 			
 			CurrentState?.FixedUpdate();
+		}
+		
+		public override void Gizmo()
+		{
+			if (Paused || CurrentState == null)
+				return;
+			
+			CurrentState?.Gizmo();
 		}
 
 		public void SetState(string key)
@@ -152,29 +178,82 @@ namespace StateMachine
 		}
 	}
 
-	public class StateMachineBuilder
+	public interface IStateMachineBuilder
+	{
+		IStateMachineBuilder AddState(IState state);
+		IStateMachineBuilder AddEventTransition(string eventKey, string from, string to);
+		IStateMachineBuilder AddTriggerTransition(string name, string from, string to, Func<bool> trigger);
+		IStateMachine Build(string stateMachineKey);
+	}
+
+	public interface IStateBuilder
+	{
+		public IStateBuilder AddTriggerTransition(string name, string to, Func<bool> trigger);
+	}
+
+	public static class StateBuilderExtensions
+	{
+		public static IStateBuilder AddTriggerTransition(this IStateBuilder builder, string name, IState to, Func<bool> trigger)
+		{
+			return builder.AddTriggerTransition(name, to.Key, trigger);
+		}
+		
+		public static IStateMachineBuilder AddTriggerTransition(this IStateMachineBuilder builder, string name, IState from, IState to, Func<bool> trigger)
+		{
+			return builder.AddTriggerTransition(name, from.Key, to.Key, trigger);
+		}
+
+		public static IStateMachineBuilder AddState(this IStateMachineBuilder builder, IState state, Action<IStateBuilder> stateBuilder)
+		{
+			builder = builder.AddState(state);
+			stateBuilder(new StateBuilder(state, builder));
+			return builder;
+		}
+	}
+
+	internal class StateBuilder : IStateBuilder
+	{
+		private readonly IState _state;
+		private readonly IStateMachineBuilder _stateMachineBuilder;
+
+		public StateBuilder(IState state, IStateMachineBuilder stateMachineBuilder)
+		{
+			_state = state;
+			_stateMachineBuilder = stateMachineBuilder;
+		}
+		public IStateBuilder AddTriggerTransition(string name, string to, Func<bool> trigger)
+		{
+			_stateMachineBuilder.AddTriggerTransition(name, _state.Key, to, trigger);
+			return this;
+		}
+	}
+
+	public class StateMachineBuilder : IStateMachineBuilder
 	{
 		private readonly StateMachineConfiguration _configuration = new();
 
-		public void AddState(IState state)
+		public IStateMachineBuilder AddState(IState state)
 		{
 			_configuration.States.Add(state.Key, state);
+			return this;
 		}
 
-		public void AddEventTransition(string eventKey, string from, string to)
+		public IStateMachineBuilder AddEventTransition(string eventKey, string from, string to)
 		{
 			if (!_configuration.EventTransitions.ContainsKey(from))
 				_configuration.EventTransitions[from] = new HashSet<(string @event, string to)>();
 
 			_configuration.EventTransitions[from].Add((eventKey, to));
+			return this;
 		}
 
-		public void AddTriggerTransition(string name, string from, string to, Func<bool> trigger)
+		public IStateMachineBuilder AddTriggerTransition(string name, string from, string to, Func<bool> trigger)
 		{
 			if (!_configuration.TriggerTransitions.ContainsKey(from))
 				_configuration.TriggerTransitions[from] = new List<(string name, Func<bool> trigger, string to)>();
 
 			_configuration.TriggerTransitions[from].Add((name, trigger, to));
+			return this;
 		}
 
 		public IStateMachine Build(string stateMachineKey)

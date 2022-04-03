@@ -2322,6 +2322,7 @@ MonoBehaviour:
   bubbleTextPrefab: {fileID: 7663970983583778160, guid: bf0875042d66ac3488b717689e0106c4, type: 3}
   enemies:
   - {fileID: 11400000, guid: c3be3a8eb65d5844b8225d02f9093a24, type: 2}
+  - {fileID: 11400000, guid: 82277148a491a8341865832d31c15a36, type: 2}
 --- !u!4 &1435092073
 Transform:
   m_ObjectHideFlags: 0
@@ -2344,7 +2345,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435092071}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d0ec81bdefa11346850057c0d530207, type: 3}
   m_Name: 
@@ -2610,19 +2611,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
-    m_Right: 15
-    m_Top: 15
-    m_Bottom: 15
-  m_ChildAlignment: 4
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
   fitType: 0
-  clampDimensions: 1
-  clampedHeight: 145
-  clampedWidth: 145
+  clampDimensions: 0
+  clampedHeight: 352074624
+  clampedWidth: 457
   rows: 2
   columns: 2
-  cellSize: {x: 145, y: 145}
-  spacing: {x: 30, y: 30}
+  cellSize: {x: 566.9981, y: 422.5255}
+  spacing: {x: 0, y: 0}
 --- !u!114 &1570662157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3511,7 +3512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2051813101}
   m_Layer: 0
-  m_Name: EnemySpawPoint
+  m_Name: SpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

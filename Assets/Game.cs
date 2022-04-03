@@ -22,7 +22,7 @@ public class Game : MonoBehaviour
 		Controls.Enable();
 		Controls.Player.TogglePause.performed += _ => State.TogglePause();
 		Instance = this;
-		State = new State(enemies);
+		State = new State(gameObject, enemies);
 		LegacyControls = new ControlManager();
 		State.GameTime.OnPauseChange += (_, isPaused) =>
 		{
@@ -36,6 +36,8 @@ public class Game : MonoBehaviour
 			}
 		};
 		MainCamera = Camera.main;
+		
+		State.AddMoney(10000);
 	}
 
 	private void Update()

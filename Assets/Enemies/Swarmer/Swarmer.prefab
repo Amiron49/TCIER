@@ -160,5 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8241263a4f565943b6a58e572c56790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  SeekTarget:
+    Speed: 5
   DeathExplosion: {fileID: 6630157096794112229, guid: 7610276769b85c04b83328701ab53a5f, type: 3}

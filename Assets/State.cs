@@ -7,15 +7,30 @@ using UnityEngine;
 
 public class State
 {
+	private readonly GameObject _parent;
+	private Player _player;
 	public ITimeFrame GameTime { get; } = new CustomTime("Game");
-	public Player Player { get; set; }
+
+	public Player Player
+	{
+		get
+		{
+			if (_player != null)
+				return _player;
+			_player = _parent.scene.GetRootGameObjects().Single(x => x.CompareTag("Player")).GetComponent<Player>();
+			return _player ;
+		}
+		set => _player = value;
+	}
+
 	public Inventory Inventory { get; }
 	public int Money { get; private set; }
 	public event MoneyChange? OnMoneyChange;
 	public Dictionary<IEnemyConfiguration, EnemyStatistic> EnemyStatistics { get; }
 
-	public State(IEnumerable<IEnemyConfiguration> enemies)
+	public State(GameObject parent, IEnumerable<IEnemyConfiguration> enemies)
 	{
+		_parent = parent;
 		EnemyStatistics = enemies.Select(x => (Key: x, Value: new EnemyStatistic(x))).ToDictionary(x => x.Key, x => x.Value);
 		Inventory = new Inventory();
 	}

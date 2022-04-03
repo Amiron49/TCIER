@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 public class BulletEmitter : MonoBehaviour
 {
 	[FormerlySerializedAs("damages")] public Team Damages;
-	private float _cooldown;
+	[FormerlySerializedAs("_cooldown")] public float Cooldown;
+	[FormerlySerializedAs("_cooldown")] public float MaxCooldown;
 	[FormerlySerializedAs("bulletPrefab")] public GameObject BulletPrefab;
 	public GameObject DefaultBulletPrefab;
 	private Transform _transform;
@@ -28,14 +29,14 @@ public class BulletEmitter : MonoBehaviour
 	{
 		if (Game.Instance.State.GameTime.Paused)
 			return;
-
-		if (_cooldown > 0)
-			_cooldown -= Time.deltaTime;
+		
+		if (Cooldown > 0)
+			Cooldown -= Time.deltaTime;
 	}
 
 	public void Shoot(Vector3 direction)
 	{
-		if (_cooldown > 0)
+		if (Cooldown > 0)
 			return;
 
 		EmitBullet(direction);
@@ -43,7 +44,7 @@ public class BulletEmitter : MonoBehaviour
 
 	public void Shoot()
 	{
-		if (_cooldown > 0)
+		if (Cooldown > 0)
 			return;
 
 		EmitBullet(_transform.up);
@@ -51,7 +52,8 @@ public class BulletEmitter : MonoBehaviour
 
 	public void EmitBullet(Vector3 direction)
 	{
-		_cooldown = Properties[GunProperties.Cooldown];
+		MaxCooldown = Properties[GunProperties.Cooldown];
+		Cooldown = Properties[GunProperties.Cooldown];
 
 		var ownPosition = _transform.position;
 		var bulletTravelDirection = direction.normalized;
