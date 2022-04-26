@@ -16,12 +16,6 @@ public class Life : MonoBehaviour, ITakeDamage
         CurrentHealth = health;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TakeDamage(IDamageSource source)
     {
         if (invincible || source.For != team)

@@ -395,4 +395,18 @@ namespace StateMachine
 			Name = name;
 		}
 	}
+	
+	public static class StateMachineExtensions {
+		public static void SetPause(this IStateMachine stateMachine, bool pause)
+		{
+			if (pause)
+			{
+				stateMachine.Pause();
+			}
+			else
+			{
+				stateMachine.Unpause();
+			}
+		}
+	}
 }

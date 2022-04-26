@@ -72,7 +72,7 @@ public class CustomTime : ITimeFrame
 
 	public event EventHandler<bool>? OnPauseChange;
 	public float DeltaTime => Time.deltaTime * Scale;
-	public float Scale { get; set; }
+	public float Scale { get; set; } = 1;
 
 
 	public CustomTime(string name)

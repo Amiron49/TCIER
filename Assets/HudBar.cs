@@ -1,62 +1,43 @@
-using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HudBar : MonoBehaviour
 {
-    public float targetFill = 100;
-    public float fillVelocity = 5;
-    public float minFillVelocity = 10;
-    public Image filling;
+    [FormerlySerializedAs("_targetFill")] [SerializeField] [FormerlySerializedAs("targetFill")] private float TargetFill = 100;
+    [FormerlySerializedAs("fillVelocity")] public float FillVelocity = 5;
+    [FormerlySerializedAs("filling")] public Image Filling;
+    [FormerlySerializedAs("outerObject")] public RectTransform OuterObject;
+    private float _maxSize;
+    private float _previousFill;
+    private float _currentFill;
+    private float _fillTime;
     
     // Start is called before the first frame update
     void Start()
     {
-    }
-
-    public void GradualChangeFill(float target)
-    {
-        var difference = CurrentFill() - target;
-        fillVelocity = Mathf.Abs(difference * 0.5f);
-
-        if (fillVelocity < minFillVelocity)
-            fillVelocity = minFillVelocity;
-        
-        targetFill = target;
+        _maxSize = OuterObject.sizeDelta.x;
+        _previousFill = TargetFill;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var currentFill = CurrentFill();
-        
-        var delta = currentFill - targetFill;
-        
-        if (!(Mathf.Abs(delta) > 0.1)) 
-            return;
-        
-        var nextTargetFill = currentFill - Mathf.Sign(delta) * fillVelocity * Time.deltaTime;
-
-        // if (delta < minFillVelocity)
-        // {
-        //     SetUiFill(targetFill);
-        //     return;
-        // }
-        //
-        // var nextFill = Mathf.Lerp(currentFill, nextTargetFill, Time.deltaTime);
-        //
-        // SetUiFill(nextFill);
-        SetUiFill(nextTargetFill);
+        _fillTime += Time.deltaTime / 2;
+        _currentFill = Mathf.Lerp(_previousFill, TargetFill, _fillTime);
+        SetUiFill(_currentFill);
     }
 
     private void SetUiFill(float target)
     {
-        var adjusted = Math.Abs(target - 100);
-        filling.rectTransform.offsetMax = new Vector2(-adjusted, filling.rectTransform.offsetMax.y);
+        var adjusted = _maxSize - target;
+        Filling.rectTransform.offsetMax = new Vector2(-adjusted, Filling.rectTransform.offsetMax.y);
     }
-    
-    private float CurrentFill()
+
+    public void GradualChangeFill(float targetFill)
     {
-        return 100 + filling.rectTransform.offsetMax.x;
+        _previousFill = _currentFill;
+        _fillTime = 0;
+        TargetFill = _maxSize * targetFill;
     }
 }

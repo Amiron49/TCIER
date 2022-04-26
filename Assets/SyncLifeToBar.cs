@@ -17,7 +17,7 @@ public class SyncLifeToBar : MonoBehaviour
 
         life.OnHealthChange += (sender, from, to) =>
         {
-            var percentage = to / (float)life.health * 100f;
+            var percentage = to / life.health;
             bar.GradualChangeFill(percentage);
         };
     }
