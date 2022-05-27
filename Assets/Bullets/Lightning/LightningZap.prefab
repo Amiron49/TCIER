@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3073343360557299401}
   - component: {fileID: 3073343360557299403}
   m_Layer: 0
-  m_Name: DebugLightningZap
+  m_Name: LightningZap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557dcba606d51744daf769bbada5466b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  from: {x: 0, y: 0}
-  to: {x: 0, y: 0}
+  _from: {x: 0, y: 0}
+  _to: {x: 0, y: 0}

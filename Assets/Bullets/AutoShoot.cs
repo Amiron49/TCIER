@@ -5,14 +5,14 @@ using UnityEngine.Serialization;
 public class AutoShoot : MonoBehaviour
 {
     [FormerlySerializedAs("test")] public Color ColorWhenShooting;
-    private BulletEmitter _emitter;
+    private IBulletEmitter _emitter;
     private Color _originalColor;
     private SpriteRenderer _spriteRenderer;
     
     // Start is called before the first frame update
     void Start()
     {
-        _emitter = this.GetComponentStrict<BulletEmitter>();
+        _emitter = this.GetComponentStrict<IBulletEmitter>();
         _spriteRenderer = this.GetComponentStrict<SpriteRenderer>();
         _originalColor = _spriteRenderer.color;
     }
@@ -22,7 +22,6 @@ public class AutoShoot : MonoBehaviour
     {
         if (Game.Instance.State.GameTime.Paused)
             return;
-
 
         if (_emitter.Cooldown <= 0)
             _emitter.Shoot();

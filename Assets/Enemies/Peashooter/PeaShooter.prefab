@@ -185,6 +185,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4226353752291681678, guid: 7a2c3db9491cba94fb11294cf4c19402, type: 3}
   m_PrefabInstance: {fileID: 6196436972348127124}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1456292897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8023493417865843226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd70584b88447fb9bfa558742d0c4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damages: 1
 --- !u!114 &8363353495127580522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,20 +211,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorWhenShooting: {r: 0.98823535, g: 1, b: 0, a: 1}
---- !u!114 &1456292897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8023493417865843226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd70584b88447fb9bfa558742d0c4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damages: 1
-  Cooldown: 0
-  MaxCooldown: 0
-  BulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
-  DefaultBulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}

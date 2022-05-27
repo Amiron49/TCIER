@@ -51,5 +51,10 @@ namespace Helpers
 		{
 			return thing.GetComponent<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}. {info}");
 		}
+		
+		public static T GetComponentStrict<T>(this GameObject thing, string info = "")
+		{
+			return thing.GetComponent<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}. {info}");
+		}
 	}
 }

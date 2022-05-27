@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554586872fc940eb9ec1e9f74b8f39e2, type: 3}
+  m_Name: Zap Bullet Definition
+  m_EditorClassIdentifier: 
+  description: 
+  bulletPrefab: {fileID: 3073343360557299400, guid: f1a0a93f2a37bd24980f054b392bbca8, type: 3}
+  bulletName: Zap
+  baseStats:
+  - property: 0
+    value: 1
+  - property: 7
+    value: 10
+  - property: 5
+    value: 3
+  - property: 6
+    value: 1

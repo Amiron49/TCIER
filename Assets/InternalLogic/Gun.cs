@@ -47,8 +47,8 @@ namespace InternalLogic
 		public void Equip(IBulletEquipConfig bulletEquipConfig)
 		{
 			Bullet = bulletEquipConfig;
-			RecalculateProperties();
 			OnBulletChange?.Invoke(this, bulletEquipConfig);
+			RecalculateProperties();
 		}
 
 		public Dictionary<GunProperties, float> PreviewEquip(IBulletEquipConfig? bulletEquipConfig)

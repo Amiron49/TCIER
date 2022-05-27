@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a751ba28d9bca04caab57f6d0ad16a2, type: 3}
+  m_Name: ThunderBro
+  m_EditorClassIdentifier: 
+  enemyName: Thunder Bro
+  level: 1
+  difficultyScore: 1
+  maxConcurrent: 15
+  menuHuskPrefab: {fileID: 6085699264901042439, guid: b15713c631d38e148b153d4b41789642, type: 3}
+  enemyPrefab: {fileID: 79949589748145732, guid: 2d49b383e89688840ad87c5ffe4a8be0, type: 3}
+  asBulletEquipment: {fileID: 11400000, guid: 802eb30a768f10c40bbbff1062a99448, type: 2}
+  asGunEquipment: {fileID: 0}
+  asBodyEquipment: {fileID: 0}
+  basePrice: 300
+  description: Zapidy dippy do

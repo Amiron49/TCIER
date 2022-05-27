@@ -1,24 +1,22 @@
-using System.Collections.Generic;
-using System.Linq;
 using Helpers;
 using InternalLogic;
 using UnityEngine;
 
 public class PlayerGun : MonoBehaviour
 {
-    public BulletEmitter PlayerGunPrefab;
+    public BulletEmitterManager PlayerGunPrefab;
     public PhysicalBullet DefaultBulletPrefab;
     private Transform _transform;
     private Vector3 _defaultOrientation = Vector2.up;
 
-    private ChildrenSync<BulletEmitter, Gun> _emitterSync;
+    private ChildrenSync<BulletEmitterManager, Gun> _emitterSync;
     
     // Start is called before the first frame update
     void Start()
     {
         _transform = transform;
 
-        _emitterSync = new ChildrenSync<BulletEmitter, Gun>(CreateEmitter);
+        _emitterSync = new ChildrenSync<BulletEmitterManager, Gun>(CreateEmitter);
         
         Game.Instance.State.Inventory.Body.OnGunCountChange += (_, _) =>
         {
@@ -34,7 +32,7 @@ public class PlayerGun : MonoBehaviour
         _emitterSync.Update(expectedGuns);
     }
     
-    private BulletEmitter CreateEmitter(Gun gun)
+    private BulletEmitterManager CreateEmitter(Gun gun)
     {
         var emitter = Instantiate(PlayerGunPrefab, transform);
 

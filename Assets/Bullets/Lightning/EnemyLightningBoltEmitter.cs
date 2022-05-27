@@ -53,9 +53,9 @@ namespace Lightning
 			{
 				propagatingProjectile.AlreadyTouched.Add(target.ConduitId);
 				var bolt = Instantiate(lightningZapPrefab);
-				bolt.from = _self.position;
-				bolt.to = target.GameObject.transform.position;
-				bolt.OnZapped += (_, _) =>
+				bolt.From = _self.position;
+				bolt.To = target.GameObject.transform.position;
+				bolt.OnZapEnd += (_, _) =>
 				{
 					target.QueueBolt(propagatingProjectile);
 				};

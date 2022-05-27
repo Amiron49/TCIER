@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using InternalLogic;
+using Lightning;
 using Menu;
 using Menu.ItemTiles;
 using TMPro;
@@ -13,6 +16,7 @@ public class Game : MonoBehaviour
 	public TCIERControls Controls { get; private set; }
 	public State State { get; private set; }
 	public Camera MainCamera { get; private set; }
+	public BulletDefinition StartingBulletEquipConfig;
 
 	public List<EnemyDefinition> enemies = new List<EnemyDefinition>();
 
@@ -38,6 +42,14 @@ public class Game : MonoBehaviour
 		MainCamera = Camera.main;
 		
 		State.AddMoney(10000);
+
+		StartCoroutine(Debug());
+	}
+
+	private IEnumerator Debug()
+	{
+		yield return new WaitForSeconds(0.3f);
+		State.Inventory.Body.Guns.First().Equip(StartingBulletEquipConfig);
 	}
 
 	private void Update()

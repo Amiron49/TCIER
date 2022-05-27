@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Lightning
 {
-	public class TakeEnemyLightningDamage : MonoBehaviour, IConduitEnemyLightning
+	public class TakePlayerLightningDamage : MonoBehaviour, IConduitEnemyLightning
 	{
 		public float damage = 40;
-		public string ConduitId { get; set; } 
+		public string ConduitId => Guid.NewGuid().ToString();
 		public GameObject GameObject { get; set; }
 		public Life life;
 
@@ -13,7 +14,6 @@ namespace Lightning
 		private void Start()
 		{
 			GameObject = gameObject;
-			ConduitId = GameObject.GetInstanceID().ToString();
 		}
 
 		public void QueueBolt(PropagatingProjectile bolt)
@@ -32,5 +32,4 @@ namespace Lightning
 			}
 		}
 	}
-	
 }

@@ -40,8 +40,13 @@ public class PhysicalBullet : MonoBehaviour, IBullet
     }
 }
 
-public interface IBullet
+public interface IBullet: IProjectile
 {
     public Vector3 Direction { get; set; }
 }
 
+public interface IProjectile
+{
+    // ReSharper disable once InconsistentNaming
+    public GameObject gameObject { get ; } 
+}

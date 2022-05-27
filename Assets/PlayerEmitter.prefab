@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5749512936523688325}
   - component: {fileID: 5749512936523688327}
-  - component: {fileID: 5749512936523688326}
   - component: {fileID: 4201230486629396812}
+  - component: {fileID: -4116891226509553284}
   m_Layer: 8
   m_Name: PlayerEmitter
   m_TagString: Untagged
@@ -86,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5749512936523688326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5749512936523688324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd70584b88447fb9bfa558742d0c4ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damages: 2
-  BulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
-  DefaultBulletPrefab: {fileID: 6143897493037203619, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
 --- !u!114 &4201230486629396812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +98,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f1cf748d66b84998057ea5d62714a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4116891226509553284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5749512936523688324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4573da43125d470fb56b4659160e8217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagesDefault: 2
