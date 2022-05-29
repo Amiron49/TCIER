@@ -53,7 +53,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca6f1126e49c14e419eb266e3c1bf324, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,32 +84,14 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.10279125
+        time: 0.3440177
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.42567962
-        value: 0.65964496
-        inSlope: -0.20998281
-        outSlope: -0.20998281
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.30771556
-      - serializedVersion: 3
-        time: 0.799137
-        value: 0.20092845
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -145,7 +127,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
@@ -162,5 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557dcba606d51744daf769bbada5466b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _duration: 0.5
   _from: {x: 0, y: 0}
   _to: {x: 0, y: 0}
