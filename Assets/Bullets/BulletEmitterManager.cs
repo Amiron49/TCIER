@@ -60,7 +60,7 @@ public class BulletEmitterManager: MonoBehaviour, IBulletEmitter
 			_directionalBulletEmitter = gameObject.AddComponent<DirectionalBulletEmitter>();
 		}
 
-		_directionalBulletEmitter.BulletPrefab = projectile;
+		_directionalBulletEmitter.BulletPrefab = (DirectionalBullet)projectile;
 
 		return _directionalBulletEmitter;
 	}

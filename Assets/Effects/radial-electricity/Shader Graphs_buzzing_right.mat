@@ -36,7 +36,7 @@ Material:
     - _Height: 0.015
     - _NoiseScale: 25
     - _NoiseSpeed: 0.88
-    - _Width: 14.7
+    - _Width: 9999
     m_Colors:
     - _Color: {r: 0.3693485, g: 0.6993446, b: 0.9433962, a: 0}
     - _DistortionAmount: {r: 0, g: 0.2, b: 0, a: 0}

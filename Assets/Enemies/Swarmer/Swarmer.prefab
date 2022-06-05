@@ -86,7 +86,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1043070916447048605
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   for: 1
---- !u!114 &4550885583101197695
+--- !u!114 &6663259634977052521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,43 +126,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4737301552016695976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cc2c741c4c6458c95d6df756dd54b97, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b5bf3b5d9ddfd7438340dc407e34beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conduitFrom: {fileID: 4737301552016695976}
-  lightningEmitter: {fileID: 0}
-  lightningEmitterPrefab: {fileID: 5366606224711646710, guid: 81176c2118842c046bdcb49b30c62500, type: 3}
---- !u!114 &4849393871759809916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4737301552016695976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e0aa5d71a96124fb6a6ab982b51001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TotalMoney: 10
-  ChunkThreshold: 10
-  MoneyPrefab: {fileID: 5993255303886767693, guid: 4e69989f8141deb468bd1d37ceaf5367, type: 3}
---- !u!114 &7940336267799876277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4737301552016695976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f710d2e5fe4fe0443979f585dc0f4cdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincible: 0
-  team: 2
-  health: 25
-  onDeathDestroy: {fileID: 4737301552016695976}
+  Definition: {fileID: 11400000, guid: c3be3a8eb65d5844b8225d02f9093a24, type: 2}
+  DeathAnimation: {fileID: 0}
 --- !u!114 &8860503905225446856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,17 +145,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SeekTarget:
     Speed: 5
-  DeathExplosion: {fileID: 6630157096794112229, guid: 7610276769b85c04b83328701ab53a5f, type: 3}
---- !u!114 &1861129477019981528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4737301552016695976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbf4dc2960ab4302a2118132ce2c5c4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxRadius: 20

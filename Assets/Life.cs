@@ -13,6 +13,9 @@ public class Life : MonoBehaviour, ITakeDamage
     // Start is called before the first frame update
     void Start()
     {
+        if (onDeathDestroy == null)
+            onDeathDestroy = gameObject;
+        
         CurrentHealth = health;
     }
 

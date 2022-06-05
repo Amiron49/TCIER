@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace InternalLogic
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "Definitions/BulletDefinition")]
 	public class BulletDefinition : ScriptableObject, IBulletEquipConfig
 	{
 		[SerializeField]

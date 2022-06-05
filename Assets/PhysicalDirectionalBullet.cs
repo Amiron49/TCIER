@@ -1,14 +1,7 @@
 using UnityEngine;
 
-public class PhysicalBullet : MonoBehaviour, IBullet
+public class PhysicalDirectionalBullet : DirectionalBullet
 {
-    public Vector3 direction = Vector3.up;
-    public Vector3 Direction
-    {
-        get => direction;
-        set => direction = value;
-    }
-
     public float velocity = 10f;
     private Transform _transform;
 
@@ -26,7 +19,7 @@ public class PhysicalBullet : MonoBehaviour, IBullet
         
         var currentPosition = _transform.position;
         var targetPosition = CalculateNextPosition(currentPosition);
-        _transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);
+        _transform.position = Vector3.Lerp(currentPosition, targetPosition, Game.Instance.State.GameTime.DeltaTime);
     }
     
     private Vector3 CalculateNextPosition(Vector3 start)
@@ -43,6 +36,16 @@ public class PhysicalBullet : MonoBehaviour, IBullet
 public interface IBullet: IProjectile
 {
     public Vector3 Direction { get; set; }
+}
+
+public abstract class DirectionalBullet: MonoBehaviour, IBullet
+{
+    public Vector3 direction = Vector3.up;
+    public Vector3 Direction
+    {
+        get => direction;
+        set => direction = value;
+    }
 }
 
 public interface IProjectile

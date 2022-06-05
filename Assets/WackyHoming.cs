@@ -27,6 +27,9 @@ public class WackyHoming : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (Game.Instance.State.GameTime.Paused)
+			return;
+		
 		var realVectorStrengthMod = _aliveTime / initialWackVectorFollowTime;
 
 		var currentPosition = _transform.position;
@@ -36,9 +39,9 @@ public class WackyHoming : MonoBehaviour
 		var targetVector = Vector3.Lerp(wackVector, normalVector, realVectorStrengthMod);
 		
 		var targetPosition = currentPosition + targetVector;
-		_transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.deltaTime);
+		_transform.position = Vector3.Lerp(currentPosition, targetPosition, Game.Instance.State.GameTime.DeltaTime);
 
-		_aliveTime += Time.deltaTime;
+		_aliveTime += Game.Instance.State.GameTime.DeltaTime;
 	}
 
 	private Vector3 CalculateNormalVector(Vector3 currentPosition, Vector3 playerPosition)

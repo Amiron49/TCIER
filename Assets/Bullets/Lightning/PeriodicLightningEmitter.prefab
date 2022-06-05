@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 5366606224711646709}
   - component: {fileID: 5366606224711646710}
   m_Layer: 0
-  m_Name: EmitLightning
+  m_Name: PeriodicLightningEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

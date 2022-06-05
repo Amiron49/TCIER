@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InternalLogic
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "Definitions/GunEquipmentConfiguration")]
 	public class GunEquipment : ScriptableObject, IGunEquipment
 	{
 		[SerializeField]

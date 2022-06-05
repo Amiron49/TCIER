@@ -8,22 +8,22 @@ namespace Lightning
 		public string ConduitId { get; private set; } = null!;
 		public GameObject GameObject => conduitFrom;
 		public GameObject conduitFrom = null!;
-		public PeriodicBouncingEnemyLightningEmit lightningEmitter = null!;
-		public PeriodicBouncingEnemyLightningEmit lightningEmitterPrefab = null!;
+		private PeriodicBouncingEnemyLightningEmit _lightningEmitter = null!;
 
 		public void QueueBolt(PropagatingProjectile bolt)
 		{
-			lightningEmitter.QueueBolt(bolt);
+			if (gameObject == null)
+				return;
+			_lightningEmitter.QueueBolt(bolt);
 		}
 
 		private void Start()
 		{
+			if (conduitFrom == null)
+				conduitFrom = gameObject;
+			
 			ConduitId = GameObject.GetInstanceID().ToString();
-
-			if (lightningEmitter == null)
-			{
-				lightningEmitter = Instantiate(lightningEmitterPrefab, GameObject.transform);
-			}
+			_lightningEmitter = Instantiate(Game.Instance.Prefabs.Enemy.PeriodicBouncingEnemyLightningEmit, GameObject.transform);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -20,10 +21,15 @@ public class HudBar : MonoBehaviour
         _previousFill = TargetFill;
     }
 
+    private void OnEnable()
+    {
+        _maxSize = OuterObject.sizeDelta.x;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        _fillTime += Time.deltaTime / 2;
+        _fillTime += Time.deltaTime * 2;
         _currentFill = Mathf.Lerp(_previousFill, TargetFill, _fillTime);
         SetUiFill(_currentFill);
     }
@@ -34,6 +40,12 @@ public class HudBar : MonoBehaviour
         Filling.rectTransform.offsetMax = new Vector2(-adjusted, Filling.rectTransform.offsetMax.y);
     }
 
+    public void SetFill(float targetFill)
+    {
+        GradualChangeFill(targetFill);
+        _fillTime = 1;
+    }
+    
     public void GradualChangeFill(float targetFill)
     {
         _previousFill = _currentFill;

@@ -44,7 +44,7 @@ public abstract class BulletEmitterBase : MonoBehaviour, IBulletEmitter
 			return;
 		
 		if (Cooldown > 0)
-			Cooldown -= Time.deltaTime;
+			Cooldown -= Game.Instance.State.GameTime.DeltaTime;
 	}
 
 
@@ -71,7 +71,7 @@ public abstract class BulletEmitterBase : MonoBehaviour, IBulletEmitter
 	{
 		var damageConfig = bulletInstance.GetComponent<IDamageSource>() ?? bulletInstance.AddComponent<DamageSource>();
 
-		gameObject.layer = Damages.DamageToLayer();
+		bulletInstance.layer = Damages.DamageToLayer();
 		damageConfig.For = Damages;
 		damageConfig.Damage = Properties[GunProperties.Damage];
 	}

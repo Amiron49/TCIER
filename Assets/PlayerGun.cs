@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGun : MonoBehaviour
 {
     public BulletEmitterManager PlayerGunPrefab;
-    public PhysicalBullet DefaultBulletPrefab;
+    public PhysicalDirectionalBullet DefaultDirectionalBulletPrefab;
     private Transform _transform;
     private Vector3 _defaultOrientation = Vector2.up;
 

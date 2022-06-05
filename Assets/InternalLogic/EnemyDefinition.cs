@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InternalLogic
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "Definitions/EnemyDefinition")]
 	public class EnemyDefinition : ScriptableObject, IEnemyConfiguration
 	{
 		[SerializeField]
@@ -28,7 +28,13 @@ namespace InternalLogic
 		private int basePrice;
 		[SerializeField]
 		private string? description;
-
+		[SerializeField]
+		private int health;
+		[SerializeField]
+		private int moneyAward;
+		[SerializeField]
+		private bool conduitsLightning = true;
+		
 		public string Name => enemyName;
 		public int Level => level;
 		public int DifficultyScore => difficultyScore;
@@ -40,6 +46,9 @@ namespace InternalLogic
 		public IBodyEquipment? AsBodyEquipment => asBodyEquipment;
 		public int BasePrice => basePrice;
 		public string? Description => description;
+		public int Health => health;
+		public int MoneyAward => moneyAward;
+		public bool ConduitsLightning => conduitsLightning;
 	}
 }
 

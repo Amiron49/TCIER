@@ -23,3 +23,5 @@ MonoBehaviour:
   asBodyEquipment: {fileID: 11400000, guid: 25961116656901b469a60968a5f63c45, type: 2}
   basePrice: 50
   description: Follows you wherever you go. Can't go more basic than that :>
+  health: 25
+  moneyAward: 10

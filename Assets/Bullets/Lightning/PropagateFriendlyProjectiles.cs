@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using UnityEngine;
@@ -29,6 +28,11 @@ public class PropagateFriendlyProjectiles: MonoBehaviour
 
 	public int PropagateMaybe(GameObject collidingObject)
 	{
+		var isPropagatingFriendlyProjectile = collidingObject.GetComponent<PropagatedFriendlyProjectile>() != null;
+
+		if (!isPropagatingFriendlyProjectile)
+			return 0;
+	
 		var projectile = collidingObject.GetComponents<IProjectile>().FirstOrDefault() ?? throw new Exception("Missing IProjectile on a propagating projectile. Lol?");
 
 		return Propagate(projectile);

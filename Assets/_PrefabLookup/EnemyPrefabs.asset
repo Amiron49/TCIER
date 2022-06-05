@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ae941f66db4214aeb8b0d419835290, type: 3}
+  m_Name: EnemyPrefabs
+  m_EditorClassIdentifier: 
+  MoneyPrefab: {fileID: 5993255303886767693, guid: 4e69989f8141deb468bd1d37ceaf5367, type: 3}
+  DefaultDeathAnimation: {fileID: 6630157096794112229, guid: 7610276769b85c04b83328701ab53a5f, type: 3}
+  PeriodicBouncingEnemyLightningEmit: {fileID: 5366606224711646710, guid: 81176c2118842c046bdcb49b30c62500, type: 3}
+  EnemyInfo: {fileID: 6421748366731433799, guid: c0287d40fa9f7e74bb85c617c591f935, type: 3}

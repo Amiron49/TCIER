@@ -2,7 +2,7 @@
 
 public class DirectionalBulletEmitter : BulletEmitterBase
 {
-	public IBullet BulletPrefab;
+	public DirectionalBullet BulletPrefab;
 	private Transform _transform;
 
 	protected override void ReInitInternal()

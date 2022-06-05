@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
 		{
 			var currentPosition = _transform.position;
 			var targetPosition = CalculateNextPosition(currentPosition);
-			_transform.position = Vector2.Lerp(currentPosition, targetPosition, Time.deltaTime);
+			_transform.position = Vector2.Lerp(currentPosition, targetPosition, Game.Instance.State.GameTime.DeltaTime);
 		}
 
 		public override void OnLeave()

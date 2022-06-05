@@ -23,3 +23,6 @@ MonoBehaviour:
   asBodyEquipment: {fileID: 0}
   basePrice: 300
   description: Zapidy dippy do
+  health: 300
+  moneyAward: 40
+  conduitsLightning: 0

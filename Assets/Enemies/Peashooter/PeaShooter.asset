@@ -23,3 +23,6 @@ MonoBehaviour:
   asBodyEquipment: {fileID: 11400000, guid: 5acf63648b9ee824cb6802e65564e1c1, type: 2}
   basePrice: 50
   description: It shoots normal physical bullets
+  health: 100
+  moneyAward: 20
+  conduitsLightning: 1

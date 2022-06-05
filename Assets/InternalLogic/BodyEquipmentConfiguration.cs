@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InternalLogic
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "Definitions/BodyEquipmentConfiguration")]
 	public class BodyEquipmentConfiguration : ScriptableObject, IBodyEquipment
 	{
 		[SerializeField] private string description;

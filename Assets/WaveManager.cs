@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
 			SecondsToNextWave = 5;
 		}
 		
-		SecondsToNextWave -= Time.deltaTime;
+		SecondsToNextWave -= Game.Instance.State.GameTime.DeltaTime;
 
 		if (SecondsToNextWave <= 0)
 		{

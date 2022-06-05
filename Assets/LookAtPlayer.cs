@@ -22,6 +22,6 @@ public class LookAtPlayer : MonoBehaviour
         if (Game.Instance.State.GameTime.Paused)
             return;
         
-        _transform.LookAt2dQuad(_playerTransform.position,  Time.deltaTime * RotationSpeed);
+        _transform.LookAt2dQuad(_playerTransform.position,  Game.Instance.State.GameTime.DeltaTime * RotationSpeed);
     }
 }
