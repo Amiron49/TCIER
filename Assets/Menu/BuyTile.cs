@@ -1,4 +1,5 @@
 using System;
+using Helpers;
 using InternalLogic;
 using TMPro;
 using UI;
@@ -24,21 +25,10 @@ namespace Menu
 			NameDisplay.text = EnemyDefinition.Name;
 			var enemyHusk = Instantiate(EnemyDefinition.MenuHuskPrefab, GraphicParent.transform);
 			enemyHusk.AddComponent<ScaleWithParent>();
-			SetToUILayer(enemyHusk);
+            enemyHusk.SetLayerRecursively(LayerMask.NameToLayer("UI"));
 			enemyHusk.transform.position -= Vector3.forward * 2;
 			Game.Instance.State.EnemyStatistics[EnemyDefinition].OnBuyCountChange += (_, _) => RefreshState();
 			Game.Instance.State.EnemyStatistics[EnemyDefinition].OnKillCountChange += (_, _) => RefreshState();
-		}
-
-		private void SetToUILayer(GameObject gameObject)
-		{
-			gameObject.layer = LayerMask.NameToLayer("UI");
-			
-			foreach (var child in gameObject.transform)
-			{
-				SetToUILayer(((Transform)child).gameObject);
-			}
-			
 		}
 
 		public void Buy()

@@ -56,5 +56,15 @@ namespace Helpers
 		{
 			return thing.GetComponent<T>() ?? throw new NullReferenceException($"Couldn't find {typeof(T).Name}. {info}");
 		}
+        
+        public static void SetLayerRecursively(this GameObject gameObject, int layer)
+        {
+            gameObject.layer = layer;
+			
+            foreach (var child in gameObject.transform)
+            {
+                SetLayerRecursively(((Transform)child).gameObject, layer);
+            }
+        }
 	}
 }

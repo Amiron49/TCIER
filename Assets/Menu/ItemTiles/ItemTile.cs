@@ -1,3 +1,4 @@
+using Helpers;
 using JetBrains.Annotations;
 using UI;
 using UnityEngine;
@@ -35,7 +36,7 @@ namespace Menu.ItemTiles
 			
 			_currentHusk = Instantiate(huskPrefab, GraphicParent.transform);
 			_currentHusk.AddComponent<ScaleWithParent>();
-			_currentHusk.layer = LayerMask.NameToLayer("UI");
+			_currentHusk.SetLayerRecursively(LayerMask.NameToLayer("UI"));
 			_currentHusk.transform.position -= Vector3.forward * 2;
 		}
 

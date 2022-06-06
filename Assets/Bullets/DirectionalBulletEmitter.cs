@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using InternalLogic;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DirectionalBulletEmitter : BulletEmitterBase
 {
@@ -11,8 +15,13 @@ public class DirectionalBulletEmitter : BulletEmitterBase
 	}
 
 	protected override bool ShootInternal()
-	{
-		EmitBullet(_transform.up);
+    {
+        var amount = Properties.GetValueOrDefault(GunProperties.Projectiles, 1);
+
+        for (int i = 0; i < amount; i++)
+        {
+            EmitBullet(_transform.up);
+        }
 
 		return true;
 	}
@@ -29,9 +38,18 @@ public class DirectionalBulletEmitter : BulletEmitterBase
 		ConfigureBullet(bulletInstance, bullet, bulletTravelDirection);
 	}
 
-	private void ConfigureBullet(GameObject bulletInstance, IBullet bullet, Vector3 bulletTravelDirection)
+	private void ConfigureBullet(GameObject bulletInstance, IBullet bullet, Vector2 bulletTravelDirection)
 	{
 		base.ConfigureBullet(bulletInstance);
+
+        var antiAccuracy = Properties.GetValueOrDefault(GunProperties.Accuracy, 0);
+        if (antiAccuracy != 0)
+        {
+            var random = Random.Range(-1f, 1f);
+            var throwOffVector = Vector2.Perpendicular(bulletTravelDirection) * (random * antiAccuracy);
+            bulletTravelDirection = throwOffVector + bulletTravelDirection;
+        }
+        
 		bullet.Direction = bulletTravelDirection;
 	}
 }

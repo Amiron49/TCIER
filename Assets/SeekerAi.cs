@@ -1,3 +1,4 @@
+using System;
 using StateMachine;
 using UnityEngine;
 
@@ -16,11 +17,24 @@ public class SeekerAi : MonoBehaviour
 
 		_seekMachine = new StateMachineBuilder().AddState(new SeekTargetState(_selfRigidbody, playerTransform, SeekTarget)).Build("default");
 		_seekMachine.SetState(nameof(SeekTargetState));
-	}
+	
+        Game.Instance.State.GameTime.OnPauseChange += GameTimeOnOnPauseChange;
+    }
+
+    private void GameTimeOnOnPauseChange(object sender, bool e)
+    {
+        _selfRigidbody.isKinematic = e;
+        _seekMachine.SetPause(e);
+    }
 
 	// Update is called once per frame
 	private void FixedUpdate()
 	{
 		_seekMachine.FixedUpdate();
 	}
+    
+    private void OnDestroy()
+    {
+        Game.Instance.State.GameTime.OnPauseChange -= GameTimeOnOnPauseChange;
+    }
 }

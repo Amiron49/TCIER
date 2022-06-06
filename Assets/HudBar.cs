@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class HudBar : MonoBehaviour
 {
-    [FormerlySerializedAs("_targetFill")] [SerializeField] [FormerlySerializedAs("targetFill")] private float TargetFill = 100;
+    [FormerlySerializedAs("_targetFill")] [SerializeField] [FormerlySerializedAs("targetFill")]
+    private float TargetFill = 100;
+
     [FormerlySerializedAs("fillVelocity")] public float FillVelocity = 5;
     [FormerlySerializedAs("filling")] public Image Filling;
     [FormerlySerializedAs("outerObject")] public RectTransform OuterObject;
@@ -13,7 +15,7 @@ public class HudBar : MonoBehaviour
     private float _previousFill;
     private float _currentFill;
     private float _fillTime;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +47,7 @@ public class HudBar : MonoBehaviour
         GradualChangeFill(targetFill);
         _fillTime = 1;
     }
-    
+
     public void GradualChangeFill(float targetFill)
     {
         _previousFill = _currentFill;

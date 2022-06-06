@@ -15,17 +15,18 @@ public class PeashooterAI : MonoBehaviour
 
 	private Transform _playerTransform;
 	private Transform _selfTransform;
+    private Rigidbody2D _selfRigidBody;
 
-	// Start is called before the first frame update
+    // Start is called before the first frame update
 	void Start()
 	{
 		_playerTransform = Game.Instance.State.Player.transform;
 		_selfTransform = transform;
-		var selfRigidBody = this.GetComponentStrict<Rigidbody2D>();
+		_selfRigidBody = this.GetComponentStrict<Rigidbody2D>();
 
-		var seekTargetState = new SeekTargetState(selfRigidBody, _playerTransform, SeekTarget, "Seek");
-		var fleeTargetState = new SeekTargetState(selfRigidBody, _playerTransform, FleeTarget, "Flee");
-		var orbitStrafeAroundState = new OrbitStrafeAroundState(selfRigidBody, _playerTransform, OrbitStrafeAround);
+		var seekTargetState = new SeekTargetState(_selfRigidBody, _playerTransform, SeekTarget, "Seek");
+		var fleeTargetState = new SeekTargetState(_selfRigidBody, _playerTransform, FleeTarget, "Flee");
+		var orbitStrafeAroundState = new OrbitStrafeAroundState(_selfRigidBody, _playerTransform, OrbitStrafeAround);
 		var builder = new StateMachineBuilder()
 			.AddState(seekTargetState, stateBuilder =>
 			{
@@ -43,7 +44,8 @@ public class PeashooterAI : MonoBehaviour
 		
 		_stateMachine = builder.Build("default");
 		_stateMachine.SetState(orbitStrafeAroundState.Key);
-	}
+        Game.Instance.State.GameTime.OnPauseChange += GameTimeOnOnPauseChange;
+    }
 
 	private float MaximumDistance(float tolerance = 1f)
 	{
@@ -75,4 +77,15 @@ public class PeashooterAI : MonoBehaviour
 	{
 		_stateMachine.FixedUpdate();
 	}
+    
+    private void GameTimeOnOnPauseChange(object sender, bool e)
+    {
+        _selfRigidBody.isKinematic = e;
+        _stateMachine.SetPause(e);
+    }
+        
+    private void OnDestroy()
+    {
+        Game.Instance.State.GameTime.OnPauseChange -= GameTimeOnOnPauseChange;
+    }
 }

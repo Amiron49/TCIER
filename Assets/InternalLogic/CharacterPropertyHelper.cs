@@ -24,10 +24,10 @@ namespace InternalLogic
 			var multiplicativeModifiers = gunModifiers.Where(x => x.How == ModifierType.Multiply);
 
 			foreach (var additiveModifier in additiveModifiers)
-				properties[additiveModifier.ModifiesTyped] += additiveModifier.Value;
+				properties[additiveModifier.ModifiesTyped] = additiveModifier.Value + properties.GetValueOrDefault(additiveModifier.ModifiesTyped);
 
 			foreach (var multiplicativeModifier in multiplicativeModifiers)
-				properties[multiplicativeModifier.ModifiesTyped] *= multiplicativeModifier.Value;
+				properties[multiplicativeModifier.ModifiesTyped] = multiplicativeModifier.Value * properties.GetValueOrDefault(multiplicativeModifier.ModifiesTyped);
 
 			return properties;
 		}

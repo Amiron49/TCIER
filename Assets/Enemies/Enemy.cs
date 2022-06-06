@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
 		Instantiate(Game.Instance.Prefabs.Enemy.EnemyInfo, transform);
 		
-		life.OnHealthChange += (sender, from, to) =>
+		life.OnHealthChange += (_, _, to) =>
 		{
 			if (to <= 0)
 				Instantiate(DeathAnimation, transform.position, quaternion.identity);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Life : MonoBehaviour, ITakeDamage
@@ -9,6 +10,7 @@ public class Life : MonoBehaviour, ITakeDamage
     public GameObject onDeathDestroy;
     public event DamageReceive OnDamageTaken;
     public event HealthChange OnHealthChange;
+    public event EventHandler OnDeath;
     
     // Start is called before the first frame update
     void Start()
@@ -17,8 +19,15 @@ public class Life : MonoBehaviour, ITakeDamage
             onDeathDestroy = gameObject;
         
         CurrentHealth = health;
+
+        OnDeath += (_, _) =>
+        {
+            Destroy(onDeathDestroy);
+        };
     }
 
+    private bool _alreadyDied = false;
+    
     public void TakeDamage(IDamageSource source)
     {
         if (invincible || source.For != team)
@@ -29,8 +38,11 @@ public class Life : MonoBehaviour, ITakeDamage
         OnDamageTaken?.Invoke(this, source);
         OnHealthChange?.Invoke(this, oldHealth, CurrentHealth);
         
-        if (CurrentHealth <= 0)
-            Destroy(onDeathDestroy);
+        if (CurrentHealth <= 0 && !_alreadyDied)
+        {
+            _alreadyDied = true;
+            OnDeath?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
 
