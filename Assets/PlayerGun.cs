@@ -39,7 +39,6 @@ public class PlayerGun : MonoBehaviour
         var syncer = emitter.GetComponentStrict<SyncGunProperties>();
 
         syncer.AssociatedGun = gun;
-
         return emitter;
     }
 

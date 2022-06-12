@@ -23,7 +23,7 @@ public class Game : MonoBehaviour
 		Controls.Enable();
 		Controls.Player.TogglePause.performed += _ => State.TogglePause();
 		Instance = this;
-		State = new State(gameObject, enemies);
+		State = new State(gameObject, enemies, StartingBulletEquipConfig);
 		LegacyControls = new ControlManager();
 		State.GameTime.OnPauseChange += (_, isPaused) =>
 		{

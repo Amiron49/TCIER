@@ -49,6 +49,17 @@ public class DirectionalBulletEmitter : BulletEmitterBase
             var throwOffVector = Vector2.Perpendicular(bulletTravelDirection) * (random * antiAccuracy);
             bulletTravelDirection = throwOffVector + bulletTravelDirection;
         }
+
+        var homingStrength = Properties.GetValueOrDefault(GunProperties.Homing, 0);
+
+        if (homingStrength > 0)
+        {
+            var homing = bulletInstance.AddComponent<Homing>();
+            homing.UnlimitedHoming = true;
+            homing.HomingStrength = homingStrength;
+            var targetAcquirer = bulletInstance.AddComponent<AutoAquireHomingTarget>();
+            targetAcquirer.HomesInOn = Damages;
+        }
         
 		bullet.Direction = bulletTravelDirection;
 	}

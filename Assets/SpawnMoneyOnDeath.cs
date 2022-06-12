@@ -1,4 +1,4 @@
-using System;
+using Helpers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,9 +11,16 @@ public class SpawnMoneyOnDeath : MonoBehaviour
     private void Start()
     {
         _moneyPrefab = Game.Instance.Prefabs.Enemy.MoneyPrefab;
+        var life = this.GetComponentStrict<Life>();
+
+        life.OnDeath += (_, _) =>
+        {
+            OnDeath();
+        };
+
     }
 
-    private void OnDestroy()    
+    private void OnDeath()    
     {
         var chunks = TotalMoney / ChunkThreshold;
         var worthPerChunk = TotalMoney / chunks;

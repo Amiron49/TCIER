@@ -18,7 +18,8 @@ public class SyncGunProperties : MonoBehaviour
 		AssociatedGun.OnBulletChange += AssociatedGunOnOnBulletChange;
 		AssociatedGun.OnPropertyChange += AssociatedGunOnOnPropertyChange;
 		_transform = transform;
-	}
+        ForceSync();
+    }
 
 	private void AssociatedGunOnOnPropertyChange(object sender, EventArgs e)
 	{
@@ -41,7 +42,15 @@ public class SyncGunProperties : MonoBehaviour
 		_transform.localPosition = offset;
 	}
 
-	private void OnDestroy()
+    public void ForceSync()
+    {
+        AssociatedGunOnOnOffsetChange(this, AssociatedGun.Offset);
+        AssociatedGunOnOnRotationChange(this, AssociatedGun.Rotation);
+        AssociatedGunOnOnBulletChange(this, AssociatedGun.Bullet);
+        AssociatedGunOnOnPropertyChange(this, EventArgs.Empty);
+    }
+
+    private void OnDestroy()
 	{
 		AssociatedGun.OnOffsetChange -= AssociatedGunOnOnOffsetChange;
 		AssociatedGun.OnRotationChange -= AssociatedGunOnOnRotationChange;

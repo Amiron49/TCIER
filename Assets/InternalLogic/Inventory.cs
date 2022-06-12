@@ -8,16 +8,18 @@ namespace InternalLogic
 {
 	public class Inventory
 	{
-		public Body Body { get; private set; }
+        private readonly IBulletEquipConfig _defaultBullet;
+        public Body Body { get; private set; }
 		public List<IEnemyAsEquipment> Unused { get; } = new List<IEnemyAsEquipment>();
 		private List<IEnemyAsEquipment> Used { get; } = new List<IEnemyAsEquipment>();
 
 		public event EventHandler? UnusedChange; 
 
-		public Inventory()
-		{
-			Body = new Body(this);
-		}
+		public Inventory(IBulletEquipConfig defaultBullet)
+        {
+            _defaultBullet = defaultBullet;
+            Body = new Body(this, _defaultBullet);
+        }
 
 		public void Add(IEnemyAsEquipment enemyAsEquipment)
 		{

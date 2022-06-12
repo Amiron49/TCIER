@@ -119,3 +119,46 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &585129517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535304938008192913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5bf3b5d9ddfd7438340dc407e34beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Definition: {fileID: 11400000, guid: b16e8af99cf4ef345b2c2bb2564a2f7b, type: 2}
+  DeathAnimation: {fileID: 0}
+--- !u!114 &585129518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535304938008192913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8241263a4f565943b6a58e572c56790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SeekTarget:
+    Speed: 2
+--- !u!114 &585129521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3535304938008192913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8deb779b433d3f448849e68b3bea852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyPrefab: {fileID: 6663259634977052521, guid: 75e5e8b9b0b29f4448fff265641a6ee0, type: 3}
+  Amount: 4
+  SpawnPositionVariance: 0.5

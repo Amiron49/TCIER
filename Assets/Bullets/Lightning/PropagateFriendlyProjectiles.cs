@@ -107,7 +107,7 @@ public class PropagateFriendlyProjectiles: MonoBehaviour
 	{
 		var selfResultTolerance = 1;
 		var results = new Collider2D[maxResults + selfResultTolerance];
-		Physics2D.OverlapCircleNonAlloc(transform.position, MaxRadius / 2, results, LayerMask.GetMask("Enemy Swarmers", "Enemy Others"));
+		Physics2D.OverlapCircleNonAlloc(transform.position, MaxRadius / 2, results, Team.Enemy.FoundOnLayer());
 		var foundTargets = results.Where(x => x != null).ToArray();
 		var filtered = foundTargets.Select(x => x.gameObject).Where(x => x != gameObject);
 		return filtered.Take(maxResults).ToArray();

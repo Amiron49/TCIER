@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.323, y: -0.544, z: 0}
   m_LocalScale: {x: 0.1527, y: 0.1527, z: 0.1527}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 1, z: 0}
   velocity: 10
+  UnlimitedPierces: 0
 --- !u!58 &5471531537448563213
 CircleCollider2D:
   m_ObjectHideFlags: 0

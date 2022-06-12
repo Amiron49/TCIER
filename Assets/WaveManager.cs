@@ -65,7 +65,7 @@ public class WaveManager : MonoBehaviour
 				var spawnOffset = new Vector3((float)(random.NextDouble() * 2), (float)(random.NextDouble() * 2));
 				var spawnLocation = SpawnPoints[random.Next(0, SpawnPoints.Length - 1)];
 				var enemyInstance = Instantiate(enemyDefinition.EnemyPrefab, spawnLocation.transform.position + spawnOffset, Quaternion.identity);
-				enemyInstance.AddComponent<NotifyOnDeath>().OnDeath += (_, _) =>
+				enemyInstance.AddComponent<NotifyOnDestroy>().OnOnDestroy += (_, _) =>
 				{
 					Game.Instance.State.EnemyStatistics[enemyDefinition].KillCount += 1;
 					_currentActiveInWave--;

@@ -6,16 +6,18 @@ namespace InternalLogic
 {
 	public sealed class Body : SlotLimitedEquipper<IBodyEquipment, IBodyModifier, BodyProperties>
 	{
-		public List<Gun> Guns { get; } = new();
+        private readonly IBulletEquipConfig _defaultBulletEquipment;
+        public List<Gun> Guns { get; } = new();
 
 		protected override BodyProperties SlotChangingProperty => BodyProperties.Slots;
 
 		public event GunCountChanged OnGunCountChange;
 		
-		public Body(Inventory inventory) : base(inventory)
-		{
-			RecalculateProperties();
-		}
+		public Body(Inventory inventory, IBulletEquipConfig defaultBulletEquipment) : base(inventory)
+        {
+            _defaultBulletEquipment = defaultBulletEquipment;
+            RecalculateProperties();
+        }
 
 		protected override void RecalculateProperties()
 		{
@@ -34,8 +36,12 @@ namespace InternalLogic
 			if (change > 0)
 			{
 				for (var i = 0; i < change; i++)
-					Guns.Add(new Gun(Inventory));
-			}
+                {
+                    var gun = new Gun(Inventory);
+                    Guns.Add(gun);
+                    gun.Equip(_defaultBulletEquipment);
+                }
+            }
 			else
 			{
 				var changeAbs = Math.Abs(change);

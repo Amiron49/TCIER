@@ -28,11 +28,11 @@ public class State
 	public event MoneyChange? OnMoneyChange;
 	public Dictionary<IEnemyConfiguration, EnemyStatistic> EnemyStatistics { get; }
 
-	public State(GameObject parent, IEnumerable<IEnemyConfiguration> enemies)
+	public State(GameObject parent, IEnumerable<IEnemyConfiguration> enemies, IBulletEquipConfig defaultBulletEquipConfig)
 	{
 		_parent = parent;
 		EnemyStatistics = enemies.Select(x => (Key: x, Value: new EnemyStatistic(x))).ToDictionary(x => x.Key, x => x.Value);
-		Inventory = new Inventory();
+		Inventory = new Inventory(defaultBulletEquipConfig);
 	}
 
 	public void AddMoney(int amount)

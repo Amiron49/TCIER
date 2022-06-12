@@ -9,7 +9,7 @@ public class MakeKinematicOnGamePause : MonoBehaviour
     {
         _selfRigidbody = GetComponent<Rigidbody2D>();
 
-        if (_selfRigidbody == null)
+        if (_selfRigidbody == null || _selfRigidbody.isKinematic)
         {
             Destroy(this);
             return;

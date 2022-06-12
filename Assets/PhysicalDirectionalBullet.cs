@@ -3,6 +3,7 @@ using UnityEngine;
 public class PhysicalDirectionalBullet : DirectionalBullet
 {
     public float velocity = 10f;
+    public bool UnlimitedPierces;
     private Transform _transform;
 
     // Start is called before the first frame update
@@ -29,6 +30,9 @@ public class PhysicalDirectionalBullet : DirectionalBullet
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (UnlimitedPierces)
+            return;
+        
         Destroy(gameObject);
     }
 }

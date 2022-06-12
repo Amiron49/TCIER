@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27c4f34ca94832bdbea73356e23a8d, type: 3}
-  m_Name: SwarmerCarrierGunEquipment
+  m_Name: RocketGunequipment
   m_EditorClassIdentifier: 
-  description: More buck for your bang
+  description: 
   modifiers:
-  - modifies: 6
+  - modifies: 3
     how: 0
-    value: 3
-  - modifies: 10
-    how: 0
-    value: -0.03
-  equipmentName: 
-  inventoryHusk: {fileID: 2987328553675857138, guid: 8d5dda81f0ab6924ab6bdb73c0869267, type: 3}
+    value: 0.2
+  equipmentName: Homing
+  inventoryHusk: {fileID: 4727783776052533603, guid: f3212f32d63ebdf42913ef4c818e487f, type: 3}

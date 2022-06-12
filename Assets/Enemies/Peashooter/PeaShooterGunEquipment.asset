@@ -19,6 +19,6 @@ MonoBehaviour:
     value: 1
   - modifies: 10
     how: 0
-    value: -0.98
+    value: -0.005
   equipmentName: Peashooter
   inventoryHusk: {fileID: 8997946245565213111, guid: 7a2c3db9491cba94fb11294cf4c19402, type: 3}

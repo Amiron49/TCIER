@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
 
 	private bool _initiated = false;
 
-	private void Init()
+	public void Init()
 	{
 		if (_initiated)
 			return;
@@ -47,10 +47,9 @@ public class Enemy : MonoBehaviour
 
 		Instantiate(Game.Instance.Prefabs.Enemy.EnemyInfo, transform);
 		
-		life.OnHealthChange += (_, _, to) =>
+		life.OnDeath += (_, _) =>
 		{
-			if (to <= 0)
-				Instantiate(DeathAnimation, transform.position, quaternion.identity);
+			Instantiate(DeathAnimation, transform.position, quaternion.identity);
 		};
 	}
 }

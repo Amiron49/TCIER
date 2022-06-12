@@ -62,4 +62,16 @@ public static class TeamHelper {
             _ => throw new ArgumentOutOfRangeException(nameof(team), team, null)
         };
     }
+    
+    public static int FoundOnLayer(this Team team)
+    {
+        return team switch
+        {
+            Team.Enemy => LayerMask.GetMask("Enemy Swarmers", "Enemy Others"),
+            Team.Player => LayerMask.GetMask("Player"),
+            Team.Player | Team.Enemy => LayerMask.GetMask("Enemy Swarmers", "Enemy Others", "Player"),
+            Team.None => throw new InvalidOperationException("None case has no layer yet"),
+            _ => throw new ArgumentOutOfRangeException(nameof(team), team, null)
+        };
+    }
 }

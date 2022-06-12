@@ -97,7 +97,7 @@ namespace Lightning
 		private IEnumerable<IConduitEnemyLightning> FindPotentialTargets()
 		{
 			var results = new Collider2D[30];
-			Physics2D.OverlapCircleNonAlloc(transform.position, radius / 2, results);
+			Physics2D.OverlapCircleNonAlloc(transform.position, radius / 2, results, (Team.Enemy | Team.Player).FoundOnLayer());
 			var filtered = results.Where(x => x != null).Select(x => x.gameObject.GetComponent<IConduitEnemyLightning>()).Where(x => x != null).ToArray();
 			return filtered.ToArray();
 		}
