@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 			_player = player;
 			_controls = controls;
 			_transform = player.GetComponentStrict<Transform>();
-		}
+        }
 
 		protected override void OnEnterInternal(object? @event)
 		{
@@ -103,7 +103,9 @@ public class Player : MonoBehaviour
 		{
 			var currentPosition = _transform.position;
 			var targetPosition = CalculateNextPosition(currentPosition);
-			_transform.position = Vector2.Lerp(currentPosition, targetPosition, Game.Instance.State.GameTime.DeltaTime);
+            var rigidBody = _player.GetComponent<Rigidbody2D>();
+            var transformPosition = Vector2.Lerp(currentPosition, targetPosition, Game.Instance.State.GameTime.DeltaTime);
+            rigidBody.MovePosition(transformPosition);
 		}
 
 		public override void OnLeave()
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
 
 		private Vector2 CalculateNextPosition(Vector2 start)
 		{
-			return start + _dodgeDirection * _player.dodgeSpeed;
+			return start + _dodgeDirection * (_player.dodgeSpeed);
 		}
 	}
 }

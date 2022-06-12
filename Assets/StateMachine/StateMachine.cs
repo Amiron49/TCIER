@@ -296,6 +296,7 @@ namespace StateMachine
 
 	public abstract class TimedStateBase : StateBase
 	{
+		protected float PercentageDone => WaitedTime / Duration;
 		protected float WaitedTime = 0f;
 		protected readonly float Duration = 0f;
 
