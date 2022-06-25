@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a751ba28d9bca04caab57f6d0ad16a2, type: 3}
+  m_Name: SwarmerEnraged
+  m_EditorClassIdentifier: 
+  enemyName: Enraged Swarmer
+  level: 1
+  difficultyScore: 1
+  maxConcurrent: 2
+  menuHuskPrefab: {fileID: 740631009372181538, guid: 98fe2ab8de1b6e54f8901e963653f678, type: 3}
+  enemyPrefab: {fileID: 7991184172974038219, guid: b8ed9597bc5d65e42861a0e40c1919c1, type: 3}
+  asBulletEquipment: {fileID: 0}
+  asGunEquipment: {fileID: 0}
+  asBodyEquipment: {fileID: 0}
+  basePrice: 10
+  description: Angry
+  health: 30
+  moneyAward: 10
+  conduitsLightning: 1

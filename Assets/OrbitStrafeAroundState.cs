@@ -6,7 +6,9 @@ public class OrbitStrafeAroundState : StateBase
 	[System.Serializable]
 	public class OrbitStrafeAroundStateConfig
 	{
-		public float Speed;
+		public float BaseSpeed;
+        public float Speed => BaseSpeed * SpeedMultiplier.Multiplier;
+        public SpeedMultiplier SpeedMultiplier;
 	}
 
 	private readonly Transform _around;
@@ -20,18 +22,12 @@ public class OrbitStrafeAroundState : StateBase
 		_configuration = configuration;
 	}
 
-	public override void FixedUpdate()
-	{
-		var currentPosition = _self.position;
-		var targetPosition = CalculateNextPosition(currentPosition, _around.position);
-		_self.MovePosition(targetPosition);
-	}
+    public override void Update()
+    {
+        var currentPosition = _self.position;
+        var difference = (Vector2)_around.position - currentPosition;
+        var direction = Vector2.Perpendicular(difference.normalized);
 
-	private Vector3 CalculateNextPosition(Vector2 currentPosition, Vector2 targetPosition)
-	{
-		var difference = targetPosition - currentPosition;
-		var direction = Vector2.Perpendicular(difference.normalized);
-
-		return currentPosition + direction * (_configuration.Speed * Time.fixedDeltaTime);
-	}
+        _self.velocity = direction * _configuration.Speed;
+    }
 }

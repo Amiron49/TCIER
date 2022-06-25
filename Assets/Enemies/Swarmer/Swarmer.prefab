@@ -144,4 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SeekTarget:
-    Speed: 5
+    BaseSpeed: 5
+    SpeedMultiplier: {fileID: 0}

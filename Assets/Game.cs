@@ -19,6 +19,8 @@ public class Game : MonoBehaviour
 
 	private void Awake()
 	{
+        //Application.targetFrameRate = 144;
+        QualitySettings.vSyncCount = 1;
 		Controls = new TCIERControls();
 		Controls.Enable();
 		Controls.Player.TogglePause.performed += _ => State.TogglePause();

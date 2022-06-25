@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
 		var gameObjectWtfUnity = gameObject;
 		_initiated = true;
 
+		gameObjectWtfUnity.AddComponent<SpeedMultiplier>();
 		gameObjectWtfUnity.AddComponent<PropagateFriendlyProjectiles>();
 		gameObjectWtfUnity.AddComponent<MakeKinematicOnGamePause>();
 		if (Definition.ConduitsLightning)

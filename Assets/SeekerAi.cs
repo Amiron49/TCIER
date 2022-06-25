@@ -1,4 +1,4 @@
-using System;
+using Helpers;
 using StateMachine;
 using UnityEngine;
 
@@ -14,7 +14,8 @@ public class SeekerAi : MonoBehaviour
 	{
 		_selfRigidbody = GetComponent<Rigidbody2D>();
 		var playerTransform = Game.Instance.State.Player.transform;
-
+        SeekTarget.SpeedMultiplier = this.GetComponentStrict<SpeedMultiplier>();
+        
 		_seekMachine = new StateMachineBuilder().AddState(new SeekTargetState(_selfRigidbody, playerTransform, SeekTarget)).Build("default");
 		_seekMachine.SetState(nameof(SeekTargetState));
 	
@@ -28,9 +29,9 @@ public class SeekerAi : MonoBehaviour
     }
 
 	// Update is called once per frame
-	private void FixedUpdate()
+	private void Update()
 	{
-		_seekMachine.FixedUpdate();
+		_seekMachine.Update();
 	}
     
     private void OnDestroy()

@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
 
 		private Vector2 CalculateNextPosition(Vector2 currentPosition)
 		{
-			return currentPosition + _controls.Player.Move.ReadValue<Vector2>() * (_player.speed * Time.fixedDeltaTime);
+			return currentPosition + _controls.Player.Move.ReadValue<Vector2>().normalized * (_player.speed * Time.deltaTime);
 		}
 	}
 	

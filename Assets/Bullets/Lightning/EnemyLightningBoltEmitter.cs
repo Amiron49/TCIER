@@ -51,12 +51,18 @@ namespace Lightning
 
 			foreach (var target in eligibleTargets)
 			{
+                if(target.GameObject == null)
+                    continue;
+                
 				propagatingProjectile.AlreadyTouched.Add(target.ConduitId);
 				var bolt = Instantiate(lightningZapPrefab);
 				bolt.From = _self.position;
 				bolt.To = target.GameObject.transform.position;
 				bolt.OnZapEnd += (_, _) =>
 				{
+                    if(target.GameObject == null)
+                        return;
+                    
 					target.QueueBolt(propagatingProjectile);
 				};
 			}

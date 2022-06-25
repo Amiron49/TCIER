@@ -142,14 +142,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SeekTarget:
-    Speed: 5
+    BaseSpeed: 4
+    SpeedMultiplier: {fileID: 0}
   PreferredDistance: 50
   PreferredDistanceToleranceFactor: 4
   PreferredDistanceRange: 10
   FleeTarget:
-    Speed: -3
+    BaseSpeed: -3
+    SpeedMultiplier: {fileID: 0}
   OrbitStrafeAround:
-    Speed: 2
+    BaseSpeed: 2
+    SpeedMultiplier: {fileID: 0}
   _stateMachine:
     rid: -2
   references:

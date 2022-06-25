@@ -23,7 +23,11 @@ public class PeashooterAI : MonoBehaviour
 		_playerTransform = Game.Instance.State.Player.transform;
 		_selfTransform = transform;
 		_selfRigidBody = this.GetComponentStrict<Rigidbody2D>();
-
+        var speedMultiplier = this.GetComponentStrict<SpeedMultiplier>();
+        FleeTarget.SpeedMultiplier = speedMultiplier;
+        OrbitStrafeAround.SpeedMultiplier = speedMultiplier;
+        SeekTarget.SpeedMultiplier = speedMultiplier;
+        
 		var seekTargetState = new SeekTargetState(_selfRigidBody, _playerTransform, SeekTarget, "Seek");
 		var fleeTargetState = new SeekTargetState(_selfRigidBody, _playerTransform, FleeTarget, "Flee");
 		var orbitStrafeAroundState = new OrbitStrafeAroundState(_selfRigidBody, _playerTransform, OrbitStrafeAround);

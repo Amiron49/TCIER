@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhysicalDirectionalBullet : DirectionalBullet
@@ -5,11 +6,16 @@ public class PhysicalDirectionalBullet : DirectionalBullet
     public float velocity = 10f;
     public bool UnlimitedPierces;
     private Transform _transform;
+    private Vector3 _initialSpawn;
+    private float _maxSaneDistance = 160;
+    private SpeedMultiplier _speedMultiplier;
 
     // Start is called before the first frame update
     void Start()
     {
         _transform = GetComponent<Transform>();
+        _speedMultiplier = this.GetOrAddComponent<SpeedMultiplier>();
+        _initialSpawn = _transform.position;
     }
 
     // Update is called once per frame
@@ -21,11 +27,18 @@ public class PhysicalDirectionalBullet : DirectionalBullet
         var currentPosition = _transform.position;
         var targetPosition = CalculateNextPosition(currentPosition);
         _transform.position = Vector3.Lerp(currentPosition, targetPosition, Game.Instance.State.GameTime.DeltaTime);
+
+        var distanceTraveled = (currentPosition - _initialSpawn).magnitude;
+
+        if (distanceTraveled > _maxSaneDistance)
+        {
+            Destroy(gameObject);
+        }
     }
     
     private Vector3 CalculateNextPosition(Vector3 start)
     {
-        return start + direction * velocity;
+        return start + direction * (velocity * _speedMultiplier.Multiplier);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
