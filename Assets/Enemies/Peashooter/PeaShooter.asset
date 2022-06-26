@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PeaShooter
   m_EditorClassIdentifier: 
   enemyName: PeaShooter
-  level: 2
+  level: 1
   difficultyScore: 10
   maxConcurrent: 50
   menuHuskPrefab: {fileID: 8997946245565213111, guid: 7a2c3db9491cba94fb11294cf4c19402, type: 3}

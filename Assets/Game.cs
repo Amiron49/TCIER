@@ -40,7 +40,7 @@ public class Game : MonoBehaviour
 		};
 		MainCamera = Camera.main;
 		
-		//State.AddMoney(10000);
+		State.AddMoney(10000);
 
 		StartCoroutine(Debug());
 	}

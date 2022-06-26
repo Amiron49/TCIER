@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damages: 1
-  BulletPrefab: {fileID: 178377613331147149, guid: afa6d5b0a510ef6409769fe5cbe7aa61, type: 3}
+  BulletPrefab: {fileID: 8837283777457760995, guid: fc11ef555c6d7514baa31e9a93cf5bff, type: 3}
 --- !u!114 &8363353495127580522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,4 +204,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2460f7e7b46a06f4283c80acf5b65b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorWhenShooting: {r: 0.98823535, g: 1, b: 0, a: 1}
+  ColorWhenShooting: {r: 1, g: 0.05490196, b: 0.03137255, a: 1}

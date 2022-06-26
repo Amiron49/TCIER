@@ -26,3 +26,4 @@ MonoBehaviour:
     value: -0.15
   - property: 6
     value: 10
+  menuHusk: {fileID: 2987328553675857138, guid: 8d5dda81f0ab6924ab6bdb73c0869267, type: 3}

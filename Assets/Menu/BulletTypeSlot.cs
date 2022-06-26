@@ -24,10 +24,9 @@ namespace Menu
 			itemController.OnUseSuccess += (_, _) => bulletSelection.Show();
 
 
-			_slotFor.OnBulletChange += (_, _) =>
+			_slotFor.OnBulletChange += (_, bulletConfig) =>
 			{
-				//TODO actually set proper husks for the bullets
-				//itemTile.SetItemHusk(config.BulletPrefab);
+				itemTile.SetItemHusk(bulletConfig.MenuHusk);
 			};
 
 		}

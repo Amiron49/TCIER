@@ -19,7 +19,7 @@ MonoBehaviour:
   menuHuskPrefab: {fileID: 6085699264901042439, guid: b15713c631d38e148b153d4b41789642, type: 3}
   enemyPrefab: {fileID: 79949589748145732, guid: 2d49b383e89688840ad87c5ffe4a8be0, type: 3}
   asBulletEquipment: {fileID: 11400000, guid: 802eb30a768f10c40bbbff1062a99448, type: 2}
-  asGunEquipment: {fileID: 0}
+  asGunEquipment: {fileID: 11400000, guid: b71e41637adcdc949ac08193a7eecb5f, type: 2}
   asBodyEquipment: {fileID: 0}
   basePrice: 300
   description: Zapidy dippy do

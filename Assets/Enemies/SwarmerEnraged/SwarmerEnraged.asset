@@ -19,7 +19,7 @@ MonoBehaviour:
   menuHuskPrefab: {fileID: 740631009372181538, guid: 98fe2ab8de1b6e54f8901e963653f678, type: 3}
   enemyPrefab: {fileID: 7991184172974038219, guid: b8ed9597bc5d65e42861a0e40c1919c1, type: 3}
   asBulletEquipment: {fileID: 0}
-  asGunEquipment: {fileID: 0}
+  asGunEquipment: {fileID: 11400000, guid: 898d09122b491c7438e04b8a0f66411a, type: 2}
   asBodyEquipment: {fileID: 0}
   basePrice: 50
   description: Angry

@@ -16,12 +16,14 @@ namespace InternalLogic
 		private string bulletName;
 		[SerializeField] 
 		private List<GunProperty> baseStats;
+        [SerializeField] 
+		private GameObject menuHusk;
 
 		public string Name => bulletName;
 		public string Description => description;
 		public GameObject BulletPrefab => bulletPrefab;
 		[CanBeNull]
-		public GameObject MenuHusk { get; } = null;
+		public GameObject MenuHusk => menuHusk;
 		public Dictionary<GunProperties, float> BaseStats => baseStats.ToDictionary(x => x.Property, x => x.Value);
 	}
 }

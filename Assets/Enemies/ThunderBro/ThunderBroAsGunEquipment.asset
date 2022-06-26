@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7066df876bbe4cae820a3c06ac4bef8f, type: 3}
-  m_Name: SwarmerBodyEquipment
+  m_Script: {fileID: 11500000, guid: 5b27c4f34ca94832bdbea73356e23a8d, type: 3}
+  m_Name: ThunderBroAsGunEquipment
   m_EditorClassIdentifier: 
-  description: Gain more body slots and beat their quantity with quality.
+  description: Arc arc
   modifiers:
-  - modifies: 1
+  - modifies: 5
     how: 0
     value: 1
-  inventoryHusk: {fileID: 740631009372181538, guid: bf47f5494fcf63a448e71aac3defaae4, type: 3}
-  equipmentName: SwarmerBodyEquipment
+  equipmentName: Thunder Bro
+  inventoryHusk: {fileID: 0}
