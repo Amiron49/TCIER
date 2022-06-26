@@ -561,7 +561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.95
+  m_fontSize: 70.6
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2442,7 +2442,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.95
+  m_fontSize: 70.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3404,7 +3404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleTextPrefab: {fileID: 7663970983583778160, guid: bf0875042d66ac3488b717689e0106c4, type: 3}
   Prefabs: {fileID: 11400000, guid: f5bc53084bbc97343801d851b01db449, type: 2}
-  StartingBulletEquipConfig: {fileID: 11400000, guid: 7fee37d5e39c6d94b98faf919c3718d6, type: 2}
+  StartingBulletEquipConfig: {fileID: 11400000, guid: 0952c3655232da042b91060d4bddfcaa, type: 2}
   enemies:
   - {fileID: 11400000, guid: c3be3a8eb65d5844b8225d02f9093a24, type: 2}
   - {fileID: 11400000, guid: 82277148a491a8341865832d31c15a36, type: 2}
@@ -3446,8 +3446,8 @@ MonoBehaviour:
   - {fileID: 777902228}
   CurrentDifficulty: 1
   SecondsToNextWave: 3
-  WaveDelayInSeconds: 30
-  DifficultyIncrease: 10
+  WaveDelayInSeconds: 25
+  DifficultyIncrease: 5
   LevelThreshold: 30
 --- !u!1 &1549080406
 GameObject:
@@ -3711,7 +3711,7 @@ MonoBehaviour:
   clampedWidth: 457
   rows: 2
   columns: 2
-  cellSize: {x: 586.8988, y: 408.19843}
+  cellSize: {x: 589.65, y: 406.29382}
   spacing: {x: 0, y: 0}
 --- !u!114 &1570662157
 MonoBehaviour:
@@ -4016,7 +4016,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705638220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4224,7 +4224,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.95
+  m_fontSize: 70.6
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

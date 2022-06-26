@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: PeaShooter
   level: 2
-  difficultyScore: 2
-  maxConcurrent: 10
+  difficultyScore: 10
+  maxConcurrent: 50
   menuHuskPrefab: {fileID: 8997946245565213111, guid: 7a2c3db9491cba94fb11294cf4c19402, type: 3}
   enemyPrefab: {fileID: 2963662087019126307, guid: eadc44562c8c9cd4ead0dab62b6d7c69, type: 3}
   asBulletEquipment: {fileID: 0}

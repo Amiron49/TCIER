@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: SwarmerEnraged
   m_EditorClassIdentifier: 
   enemyName: Enraged Swarmer
-  level: 1
-  difficultyScore: 1
-  maxConcurrent: 2
+  level: 3
+  difficultyScore: 10
+  maxConcurrent: 10
   menuHuskPrefab: {fileID: 740631009372181538, guid: 98fe2ab8de1b6e54f8901e963653f678, type: 3}
   enemyPrefab: {fileID: 7991184172974038219, guid: b8ed9597bc5d65e42861a0e40c1919c1, type: 3}
   asBulletEquipment: {fileID: 0}
   asGunEquipment: {fileID: 0}
   asBodyEquipment: {fileID: 0}
-  basePrice: 10
+  basePrice: 50
   description: Angry
   health: 30
   moneyAward: 10

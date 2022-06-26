@@ -1,7 +1,9 @@
 #nullable enable
+using System;
 using Helpers;
 using StateMachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -52,7 +54,12 @@ public class Player : MonoBehaviour
 		_movementStateMachine.FixedUpdate();
 	}
 
-	private class NormalMovementState : StateBase
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    private class NormalMovementState : StateBase
 	{
 		private readonly Player _player;
 		private readonly TCIERControls _controls;

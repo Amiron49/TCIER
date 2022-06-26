@@ -18,9 +18,20 @@ public class MakeKinematicOnGamePause : MonoBehaviour
         Game.Instance.State.GameTime.OnPauseChange += GameTimeOnOnPauseChange;
     }
 
+    private Vector2 _velocityBefore;
+    
     private void GameTimeOnOnPauseChange(object sender, bool e)
     {
         _selfRigidbody.isKinematic = e;
+        if (e)
+        {
+            _velocityBefore = _selfRigidbody.velocity;
+            _selfRigidbody.velocity = Vector2.zero;
+        }
+        else
+        {
+            _selfRigidbody.velocity = _velocityBefore;
+        }
     }
 
     private void OnDestroy()

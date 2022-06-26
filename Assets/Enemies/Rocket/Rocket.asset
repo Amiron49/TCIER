@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Rocket
   level: 1
   difficultyScore: 1
-  maxConcurrent: 5
+  maxConcurrent: 100
   menuHuskPrefab: {fileID: 4727783776052533603, guid: f3212f32d63ebdf42913ef4c818e487f, type: 3}
   enemyPrefab: {fileID: 3259896894203455119, guid: b99775fcd2b1f6d49af9d672d7323952, type: 3}
   asBulletEquipment: {fileID: 11400000, guid: 7fee37d5e39c6d94b98faf919c3718d6, type: 2}

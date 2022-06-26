@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SwarmerCarrier
   m_EditorClassIdentifier: 
   enemyName: Bag of Swarmers
-  level: 1
-  difficultyScore: 1
-  maxConcurrent: 1
+  level: 5
+  difficultyScore: 4
+  maxConcurrent: 20
   menuHuskPrefab: {fileID: 2987328553675857138, guid: 8d5dda81f0ab6924ab6bdb73c0869267, type: 3}
   enemyPrefab: {fileID: 3535304938008192913, guid: 6ffbf285710ca52489184d5fa174f21f, type: 3}
   asBulletEquipment: {fileID: 11400000, guid: 2f7f6089de9675e41b7ac953d029c473, type: 2}
