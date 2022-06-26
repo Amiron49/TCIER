@@ -44,6 +44,11 @@ namespace Menu
             return distanceInProportionToSizeOne;
         }
 
+        public float RealOffsetToLocalOffsetFactor()
+        {
+            return  RectTransformToMove.localPosition.magnitude / _editorFor.Offset.magnitude;
+        }
+
         public void OnInitializePotentialDrag(PointerEventData eventData)
         {
             eventData.useDragThreshold = false;

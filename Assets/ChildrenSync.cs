@@ -61,11 +61,8 @@ public class ChildrenSync<T> where T : Component
 
 	private void RemoveLastN(int count)
 	{
-		Debug.Log($"count: {count}");
 		var removalStartIndex = _managedChildren.Count - count;
 		var toBeRemovedEditors = _managedChildren.ToArray()[removalStartIndex..^(count - 1)];
-		Debug.Log($"toBeRemovedEditors count: {toBeRemovedEditors.Length}");
-		Debug.Log($"removalStartIndex: {removalStartIndex}");
 
 		for (var offset = 0; offset < toBeRemovedEditors.Length; offset++)
 		{
