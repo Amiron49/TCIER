@@ -561,7 +561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 70.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2307,7 +2307,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.25
+  m_fontSize: 54.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2442,7 +2442,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 70.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3411,6 +3411,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ddfec24d98bfe5479e642c796f92353, type: 2}
   - {fileID: 11400000, guid: b16e8af99cf4ef345b2c2bb2564a2f7b, type: 2}
   - {fileID: 11400000, guid: 9f6c7ef92408cdc4eae73c25fea323b7, type: 2}
+  - {fileID: 11400000, guid: b6024629e90373743b27294c4e02239c, type: 2}
 --- !u!4 &1435092073
 Transform:
   m_ObjectHideFlags: 0
@@ -3433,7 +3434,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435092071}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d0ec81bdefa11346850057c0d530207, type: 3}
   m_Name: 
@@ -3710,7 +3711,7 @@ MonoBehaviour:
   clampedWidth: 457
   rows: 2
   columns: 2
-  cellSize: {x: 491.0348, y: 487.89044}
+  cellSize: {x: 586.8988, y: 408.19843}
   spacing: {x: 0, y: 0}
 --- !u!114 &1570662157
 MonoBehaviour:
@@ -4223,7 +4224,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.55
+  m_fontSize: 70.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

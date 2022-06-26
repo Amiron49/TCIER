@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: SwarmerEnragesAsGunEquipment
   m_EditorClassIdentifier: 
   description: 
-  modifiers: []
-  equipmentName: 
-  inventoryHusk: {fileID: 0}
+  modifiers:
+  - modifies: 0
+    how: 0
+    value: -0.05
+  equipmentName: Swarmer Enraged
+  inventoryHusk: {fileID: 740631009372181538, guid: 98fe2ab8de1b6e54f8901e963653f678, type: 3}

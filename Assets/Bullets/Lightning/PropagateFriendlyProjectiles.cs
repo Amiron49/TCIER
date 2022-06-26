@@ -62,7 +62,7 @@ public class PropagateFriendlyProjectiles: MonoBehaviour
 					ApplyTypeSpecifics(bullet, differenceToTarget.normalized);
 					break;
 				case IZap zap:
-					ApplyTypeSpecifics(zap, spawnPosition, targetPosition, potentialTarget.gameObject);
+					ApplyTypeSpecifics(zap, _transform, potentialTarget.gameObject.transform, potentialTarget.gameObject);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException(nameof(projectileClone), "Projectile type needs to added here.");
@@ -72,7 +72,7 @@ public class PropagateFriendlyProjectiles: MonoBehaviour
 		return potentialTargets.Length;
 	}
 
-	private void ApplyTypeSpecifics(IZap zap, Vector2 from, Vector2 to, GameObject potentialTargetGameObject)
+	private void ApplyTypeSpecifics(IZap zap, Transform from, Transform to, GameObject potentialTargetGameObject)
 	{
 		var zapDamageComponent = zap.gameObject.GetComponentStrict<IDamageSource>(); 
 		zap.From = from;

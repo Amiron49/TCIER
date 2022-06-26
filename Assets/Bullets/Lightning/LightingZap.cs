@@ -1,19 +1,20 @@
 using System;
 using Helpers;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Lightning
 {
     public class LightingZap : MonoBehaviour, IZap
     {
-        public Vector2 From 
+        public Transform From 
         {
             get => _from;
             set => _from = value;
         }
 
-        public Vector2 To       
+        public Transform To       
         {
             get => _to;
             set => _to = value;
@@ -28,8 +29,8 @@ namespace Lightning
         private LineRenderer _lineRenderer;
         private Timer _timer;
         [SerializeField] private float _duration = 0.5f;
-        [SerializeField] private Vector2 _from;
-        [SerializeField] private Vector2 _to;
+        [SerializeField] private Transform _from;
+        [SerializeField] private Transform _to;
 
         [CanBeNull]
         public event EventHandler OnZapStart;
@@ -44,11 +45,6 @@ namespace Lightning
         void Start()
         {
             _lineRenderer = this.GetComponentStrict<LineRenderer>();
-            _lineRenderer.SetPositions(new Vector3[]
-            {
-                _from,
-                _to
-            });
 
             _timer = new Timer(_duration);
             _timer.Start();
@@ -59,21 +55,56 @@ namespace Lightning
             };
             
             OnZapStart?.Invoke(this, EventArgs.Empty);
+
+            _registeredFromDestructionHandler = WatchForDestruction(From);
+            _registeredToDestructionHandler = WatchForDestruction(To);
+        }
+
+        private NotifyOnDestroy _registeredFromDestructionHandler;
+        private NotifyOnDestroy _registeredToDestructionHandler;
+        
+        private NotifyOnDestroy WatchForDestruction(Component thing)
+        {
+            var toDestroyNotifier = thing.gameObject.GetOrAddComponent<NotifyOnDestroy>();
+            toDestroyNotifier.OnOnDestroy += HandleAnchorDestruction;
+            return toDestroyNotifier;
         }
         
+        private void HandleAnchorDestruction(object o, EventArgs eventArgs)
+        {
+            _fromOrToWasDestroyed = true;
+            Destroy(gameObject);
+        }
 
+        private bool _fromOrToWasDestroyed = false;
+        
         // Update is called once per frame
         void Update()
         {
+            if (_fromOrToWasDestroyed)
+                return;
+            
+            _lineRenderer.SetPositions(new[]
+            {
+                _from.position,
+                _to.position
+            });
+            
             _timer.Update();
+        }
+
+        private void OnDestroy()
+        {
+            _registeredFromDestructionHandler.OnOnDestroy -= HandleAnchorDestruction;
+            _registeredToDestructionHandler.OnOnDestroy -= HandleAnchorDestruction;
         }
     }
 }
 
 public interface IZap : IProjectile
 {
-    public Vector2 From { get; set; }
-    public Vector2 To { get; set; }
+    public Transform From { get; set; }
+    public Transform To { get; set; }
     public float Duration { get; set; }
     event EventHandler OnZapStart;
     event EventHandler OnZapEnd;
