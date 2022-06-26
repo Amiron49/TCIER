@@ -17,9 +17,9 @@ MonoBehaviour:
   bulletName: Physical Bullet
   baseStats:
   - property: 0
-    value: 1
+    value: 0.6
   - property: 7
-    value: 5
+    value: 25
   - property: 4
     value: 10
   menuHusk: {fileID: 740631009372181538, guid: bf47f5494fcf63a448e71aac3defaae4, type: 3}

@@ -40,14 +40,14 @@ public class Game : MonoBehaviour
 		};
 		MainCamera = Camera.main;
 		
-		State.AddMoney(10000);
+		//State.AddMoney(10000);
 
 		StartCoroutine(Debug());
 	}
 
 	private IEnumerator Debug()
 	{
-		yield return new WaitForSeconds(0.3f);
+		yield return new WaitForSeconds(0.1f);
 		State.Inventory.Body.Guns.First().Equip(StartingBulletEquipConfig);
 	}
 

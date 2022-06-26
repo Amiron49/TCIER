@@ -23,6 +23,6 @@ MonoBehaviour:
   asBodyEquipment: {fileID: 0}
   basePrice: 30
   description: 
-  health: 40
+  health: 50
   moneyAward: 10
   conduitsLightning: 1

@@ -561,7 +561,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.6
+  m_fontSize: 70.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2442,7 +2442,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.6
+  m_fontSize: 70.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3711,7 +3711,7 @@ MonoBehaviour:
   clampedWidth: 457
   rows: 2
   columns: 2
-  cellSize: {x: 589.65, y: 406.29382}
+  cellSize: {x: 586.8988, y: 408.19843}
   spacing: {x: 0, y: 0}
 --- !u!114 &1570662157
 MonoBehaviour:
@@ -4224,7 +4224,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70.6
+  m_fontSize: 70.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

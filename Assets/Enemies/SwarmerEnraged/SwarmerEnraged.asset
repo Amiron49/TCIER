@@ -23,6 +23,6 @@ MonoBehaviour:
   asBodyEquipment: {fileID: 0}
   basePrice: 50
   description: Angry
-  health: 30
+  health: 25
   moneyAward: 10
   conduitsLightning: 1
